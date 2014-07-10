@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="css/default.css" />
+</head>
+<body>
+<div class="b-pano">
+    <div class="b-pano__hl"></div>
+    <div class="b-pano__vl"></div>
+    <div class="b-pano__canvas" id="pano"></div>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/lib.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/pano.js"></script>
+<script>
+    new Pano({
+        Vertex: {
+            r: 10,  //radius
+            fill: 'white'
+        },
+        Figure: {
+            stroke: 'white',
+            'stroke-width': 1,
+            fill: 'white',
+            'fill-opacity': .3
+        }
+    }).initialize('#pano');
+</script>
+</body>
+</html>
