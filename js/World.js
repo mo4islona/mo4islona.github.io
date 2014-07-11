@@ -1,6 +1,5 @@
 World = Class.extend({
 
-    gravity: 1,
     points: [],
     isEnabled: true,
 
@@ -9,19 +8,20 @@ World = Class.extend({
     width: window.innerWidth,
     height: window.innerHeight,
 
-    __init: function () {
+    initialize: function () {
+
+        console.log('1');
 
         this.elem = document.getElementById('game');
         this.ctx = this.elem.getContext('2d');
 
         this.setSize(this.width, this.height);
 
-
         requestAnimFrame(this.render.bind(this));
     },
 
     setSize: function (width, height) {
-        this.ctx.canvas.width  = width;
+        this.ctx.canvas.width = width;
         this.ctx.canvas.height = height;
     },
 
@@ -43,17 +43,24 @@ World = Class.extend({
 
             for (var i = 0, length = this.points.length; i < length; i++) {
                 var point = this.points[i];
+                point.calculate();
+
+                if (point.y > this.height) {
+                    point.y = this.height;
+                   // point.accelerateY = -point.accelerateY * 1/point.massPower;
+                }
+
                 this.ctx.beginPath();
-                this.ctx.arc(point.x, point.y, 10, 0, 2 * Math.PI, false);
+                this.ctx.arc(point.x - point.mass, point.y - point.mass, point.mass, 0, 2 * Math.PI, false);
                 this.ctx.closePath();
                 this.ctx.fill();
-
-                console.log(point)
             }
 
         }
 
-        //requestAnimFrame(this.render.bind(this));
+        requestAnimFrame(this.render.bind(this));
     }
 
 });
+
+World.GRAVITY = .7;

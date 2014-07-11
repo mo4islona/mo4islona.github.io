@@ -13,11 +13,15 @@
 
     var world = new World();
 
+    world.initialize();
+
     for (var i = 0; i < 10; i++) {
-        var point = new Point(
-                Math.round(world.width * Math.random()),
-                Math.round(world.height * Math.random())
-        );
+        var point = new Point({
+            x: Math.round(world.width * Math.random()),
+            //y: Math.round(world.height * Math.random())
+            y: world.height*3/4,
+            mass: 5+Math.random()*20
+        });
         world.points.push(point)
     }
 

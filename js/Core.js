@@ -42,7 +42,7 @@
         // The dummy class constructor
         function Class() {
             // All construction is actually done in the init method
-            if (!initializing && this.__init)
+            if (!initializing)
                 this.__init.apply(this, arguments);
         }
 
@@ -54,6 +54,15 @@
 
         // And make this class extendable
         Class.extend = arguments.callee;
+
+        Class.prototype.__init = function (values) {
+            for (var name in values) {
+                this[name] = values[name];
+            }
+            this.initialize();
+        }
+
+        Class.prototype.initialize = function () {}
 
         return Class;
     };
@@ -72,3 +81,5 @@ window.requestAnimFrame = (function (callback) {
 
 // fix bug in safari: http://qfox.nl/weblog/218
 document.body.clientWidth;
+
+
