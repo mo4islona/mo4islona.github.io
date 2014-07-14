@@ -19,8 +19,8 @@ Point = Class.extend({
         //
         this.accelerateY += World.GRAVITY;
 
-        this.accelerateX *= .999;
-        this.accelerateY *= .999;
+        this.accelerateX *= .99;
+        this.accelerateY *= .99;
 
         var nextX = this.x + this.accelerateX;
         var nextY = this.y + this.accelerateY;

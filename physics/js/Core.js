@@ -62,8 +62,6 @@
             this.initialize();
         }
 
-        Class.prototype.initialize = function () {}
-
         return Class;
     };
 })();

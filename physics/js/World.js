@@ -47,7 +47,7 @@ World = Class.extend({
 
                 if (point.y > this.height) {
                     point.y = this.height;
-                   // point.accelerateY = -point.accelerateY * 1/point.massPower;
+                   point.accelerateY = -point.accelerateY * (1-point.massPower);
                 }
 
                 this.ctx.beginPath();
@@ -63,4 +63,4 @@ World = Class.extend({
 
 });
 
-World.GRAVITY = .7;
+World.GRAVITY = .2;
