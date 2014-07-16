@@ -12,9 +12,9 @@ Pano = EForm.Factory.extend({
         this.$container.html(this.$elem);
 
         this.$container
-            .on('mousedown', $.proxy(this, 'clickHandler'))
-            .on('mousedown', 'circle', $.proxy(this, 'startDrag'))
-            .on('mouseup', 'circle', $.proxy(this, 'stopDrag'))
+            .on('mousedown', this.clickHandler.bind(this))
+            .on('mousedown', 'circle', this.startDrag.bind(this))
+            .on('mouseup', 'circle', this.stopDrag.bind(this))
 
         this.figures = [];
     },
