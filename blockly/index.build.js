@@ -588,14 +588,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 let editor;
+let code = document.getElementById('startBlocks')
 
 function render(element, toolbox) {
   if( editor ) {
+    editor.removeChangeListener(updateCode);
+    code = __WEBPACK_IMPORTED_MODULE_0_node_blockly_browser___default.a.Xml.workspaceToDom(editor)
     editor.dispose()
   }
-  return __WEBPACK_IMPORTED_MODULE_0_node_blockly_browser___default.a.inject(element, {
+  editor = __WEBPACK_IMPORTED_MODULE_0_node_blockly_browser___default.a.inject(element, {
     toolbox: document.getElementById(toolbox)
-  });
+  })
+
+  __WEBPACK_IMPORTED_MODULE_0_node_blockly_browser___default.a.Xml.domToWorkspace(code, editor);
+
+  editor.addChangeListener(updateCode);
+
+  return editor
 }
 
 function updateCode() {
@@ -607,15 +616,13 @@ function updateCode() {
 }
 
 editor = render('editor', 'toolbox');
-__WEBPACK_IMPORTED_MODULE_0_node_blockly_browser___default.a.Xml.domToWorkspace(document.getElementById('startBlocks'), editor);
 
-editor.addChangeListener(updateCode);
 updateCode();
 
 document.getElementById('locale').onchange = (e) => {
   __webpack_require__(78)("./" + e.target.value).then((locale) => {
     __WEBPACK_IMPORTED_MODULE_0_node_blockly_browser___default.a.setLocale(locale);
-    editor = render('editor', 'toolbox');
+    render('editor', 'toolbox');
   })
 }
 
