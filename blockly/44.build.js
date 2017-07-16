@@ -1,6 +1,6 @@
-webpackJsonp([44,66],{
+webpackJsonp([44],{
 
-/***/ 2:
+/***/ 21:
 /***/ (function(module, exports) {
 
 var Blockly = {}; Blockly.Msg={};  module.exports = function(){ // This file was automatically generated.  Do not modify.

@@ -1,6 +1,6 @@
 webpackJsonp([60],{
 
-/***/ 7:
+/***/ 5:
 /***/ (function(module, exports) {
 
 var Blockly = {}; Blockly.Msg={};  module.exports = function(){ // This file was automatically generated.  Do not modify.

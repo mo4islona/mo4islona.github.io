@@ -1,6 +1,6 @@
-webpackJsonp([53,68],[
-/* 0 */,
-/* 1 */
+webpackJsonp([53],{
+
+/***/ 12:
 /***/ (function(module, exports) {
 
 var Blockly = {}; Blockly.Msg={};  module.exports = function(){ // This file was automatically generated.  Do not modify.
@@ -430,4 +430,5 @@ Blockly.Msg.PROCEDURES_HUE = "290";
 Blockly.Msg.COLOUR_HUE = "20";return Blockly.Msg;}
 
 /***/ })
-]);
+
+});
