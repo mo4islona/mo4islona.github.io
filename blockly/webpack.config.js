@@ -34,5 +34,5 @@ module.exports = {
       inject: true,
     }),
   ],
-  devtool: 'eval',
+  devtool: process.env.NODE_ENV === 'production' ? 'source-map' : 'eval',
 };
