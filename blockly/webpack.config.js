@@ -34,5 +34,5 @@ module.exports = {
       inject: true,
     }),
   ],
-  devtool: 'source-map',
+  devtool: 'eval',
 };

@@ -33,7 +33,7 @@ editor = render('editor', 'toolbox');
 updateCode();
 
 document.getElementById('locale').onchange = (e) => {
-  import('node-blockly/lib/i18n/' + e.target.value).then((locale) => {
+  import('node-blockly/lib/i18n/' + e.target.value).then(({ default: locale }) => {
     Blockly.setLocale(locale);
     render('editor', 'toolbox');
   })

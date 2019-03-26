@@ -2873,9 +2873,8 @@ no-case@^2.2.0:
   dependencies:
     lower-case "^1.1.1"
 
-"node-blockly@https://github.com/mo4islona/node-blockly":
+node-blockly@../../node-blockly:
   version "1.0.36"
-  resolved "https://github.com/mo4islona/node-blockly#7e0bc9aab5fd47f907db5e97eca77469e5e9cff0"
   dependencies:
     jsdom "^11.3.0"
     xmlshim "^0.2.5"
