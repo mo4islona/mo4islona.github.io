@@ -1,6 +1,4 @@
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -15,9 +13,6 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-        }
       }
     ]
   },
@@ -38,7 +33,6 @@ module.exports = {
       },
       inject: true,
     }),
-    new UglifyJSPlugin()
   ],
   devtool: 'source-map',
 };
