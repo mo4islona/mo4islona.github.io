@@ -1,4 +1,4 @@
-import Blockly from '../../node-blockly/browser';
+import Blockly from 'node-blockly/browser';
 
 var editor;
 var code = document.getElementById('startBlocks')
