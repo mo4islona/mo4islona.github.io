@@ -29,6 +29,7 @@ function updateCode() {
   document.getElementById('lua').childNodes[0].innerText = Blockly.Lua.workspaceToCode(editor)
   document.getElementById('dart').childNodes[0].innerText = Blockly.Dart.workspaceToCode(editor)
   document.getElementById('python').childNodes[0].innerText = Blockly.Python.workspaceToCode(editor)
+  document.getElementById('xml').childNodes[0].innerText = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(editor))
 
   document.querySelectorAll('pre code').forEach((block) => {
     hljs.highlightBlock(block);
@@ -48,7 +49,7 @@ document.getElementById('locale').onchange = (e) => {
 
 $("#locale").select2({
   allowClear: false,
-  width: 100,
+  width: 200,
 });
 
 $("#import").click(() => {
