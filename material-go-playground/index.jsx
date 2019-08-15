@@ -287,3 +287,6 @@ render(
   <App/>,
   document.getElementById("root"),
 );
+
+// BUG FIXME
+window.scrollTo(0, 0)
