@@ -82,6 +82,45 @@ func main() {
   fmt.Println(strutil.StripSlashes(example_str))
 }`;
 
+
+const codeTestFail = `
+package main
+
+import (
+  "testing"
+)
+
+func Abs(i int) int {
+  return 5
+}
+
+func TestAbs(t *testing.T) {
+    got := Abs(-1)
+    if got != 1 {
+        t.Errorf("Abs(-1) = %d; want 1", got)
+    }
+}
+`
+const codeTestSuccess = `
+package main
+
+import (
+  "testing"
+)
+
+func Abs(i int) int {
+  return 1
+}
+
+func TestAbs(t *testing.T) {
+    got := Abs(-1)
+    if got != 1 {
+        t.Errorf("Abs(-1) = %d; want 1", got)
+    }
+}
+`
+
+
 function Title({children}) {
   return <Typography variant="body1">{children}</Typography>;
 }
@@ -94,9 +133,7 @@ function App() {
           <Typography variant="h6">React go playground component</Typography>
         </Toolbar>
       </AppBar>
-
       <div style={{marginTop: 80}}>
-
         <Grid container spacing={2}>
           <Grid item sm={6} xs={12}>
             <GoPlayground
@@ -120,19 +157,15 @@ function App() {
                   main: orange[500],
                 },
               },
-              shape: {
-                borderRadius: 20,
-              },
               overrides: {
-                MuiPaper: {
-                  rounded: {
-                    borderRadius: "4px !important",
+                MuiButton: {
+                  root: {
+                    borderRadius: "20px !important",
                   },
                 },
               },
             }}/>
           </Grid>
-
           <Grid item sm={6} xs={12}>
             <Typography variant="h6" style={{fontFamily: "monospace"}}>Minimal with custom font</Typography>
             <GoPlayground
@@ -152,13 +185,10 @@ function App() {
                 typography: {
                   fontFamily: "monospace",
                 },
-                shape: {
-                  borderRadius: 100,
-                },
                 overrides: {
-                  MuiPaper: {
-                    rounded: {
-                      borderRadius: "4px !important",
+                  MuiButton: {
+                    root: {
+                      borderRadius: "20px !important",
                     },
                   },
                 },
@@ -218,8 +248,8 @@ function App() {
             <GoPlayground
               code={codeLongOutput}
               hideFormat
-              resultHeight={80}
               editorHeight={150}
+              resultHeight={80}
               compactButtons
               title={<Title>Editor height 150px<br/>Result height 80px</Title>}
             />
@@ -229,6 +259,22 @@ function App() {
             <GoPlayground
               code={code}
               hideHeader
+            />
+          </Grid>
+          <Grid item sm={6} xs={12}>
+            <GoPlayground
+              title={<Title>Test fail</Title>}
+              code={codeTestFail}
+              hideFormat
+              compactButtons
+            />
+          </Grid>
+          <Grid item sm={6} xs={12}>
+            <GoPlayground
+              title={<Title>Test success</Title>}
+              code={codeTestSuccess}
+              hideFormat
+              compactButtons
             />
           </Grid>
         </Grid>

@@ -6,9 +6,9 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.3.2",
+    "material-go-playground": "^0.0.7",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "material-go-playground": "^0.0.6"
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
