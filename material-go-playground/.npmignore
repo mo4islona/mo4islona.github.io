@@ -1,0 +1,11 @@
+website/*
+src/*
+.idea/*
+.babelrc
+.editorconfig
+.eslintrc
+webpack.*
+index.html
+index.jsx
+*.tgz
+.DS_Store
