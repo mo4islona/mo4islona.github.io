@@ -35,7 +35,12 @@ export default function WIthTitle() {
           palette: {
             primary: {
               main: '#fff',
+              contrastText: '#333'
             },
+            // background: {
+            //   paper: '#fff',
+            //   default: '#fff'
+            // }
           },
         }}
       />

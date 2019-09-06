@@ -22,7 +22,7 @@ func main() {
 export default function GettingStarted() {
   return (
     <div>
-      <Typography variant="body" color="textSecondary">Flexible, lightweight sandbox client for goland playground <a href="https://go.googlesource.com/playground">https://go.googlesource.com/playground</a></Typography>
+      <Typography variant="body" color="textSecondary">Flexible, lightweight sandbox client for <a href="https://go.googlesource.com/playground">goland playground </a></Typography>
 
       <Typography variant="h4" style={{ marginTop: 30 }}>Install</Typography>
 
@@ -38,7 +38,19 @@ export default function GettingStarted() {
 
       <GoPlayground
         code={code}
+        theme={{
+          palette: {
+            primary: {
+              main: '#01acd7',
+              contrastText: '#fff'
+            }
+          }
+        }}
       />
+
+      <Typography variant="h4">Params</Typography>
+
+      //TODO
     </div>
   );
 }

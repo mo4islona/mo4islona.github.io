@@ -1,6 +1,5 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Highlight from 'react-highlight';
 import GoPlayGround from 'material-go-playground';
 
 const codeTestFail = `
@@ -25,8 +24,6 @@ func TestAbs(t *testing.T) {
 export default function Tests() {
   return (
     <div>
-      <Highlight className="jsx"/>
-
       <Grid container spacing={2}>
         <Grid item sm={6} xs={12}>
           <GoPlayGround

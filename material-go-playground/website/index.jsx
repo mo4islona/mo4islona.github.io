@@ -1,12 +1,11 @@
 import React from 'react';
-import { Router, Route, IndexRoute } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { render } from 'react-dom';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,6 +13,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import Goplayground from 'material-go-playground';
+// import Goplayground from '../../../../material-go-playground/dist';
 
 
 import Menu from './Menu';
@@ -34,6 +35,11 @@ const history = createBrowserHistory({
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
+  '@global': {
+    'a': {
+      color: theme.palette.secondary.main
+    }
+  },
   root: {
     display: 'flex',
   },
@@ -69,16 +75,16 @@ const useStyles = makeStyles(theme => ({
 const theme = {
   typography: {
     h1: {
-      fontSize: '1.8rem'
+      fontSize: '1.8rem',
     },
     h4: {
       margin: '5px 0'
     }
-  }
-};
+  },
+}
 
 function ResponsiveDrawer(props) {
-  const { container } = props;
+  const {container} = props;
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -88,70 +94,70 @@ function ResponsiveDrawer(props) {
 
   return (
     <Router history={history}>
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              className={classes.menuButton}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" noWrap>
-              Golang playground component
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <nav className={classes.drawer} aria-label="mailbox folders">
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-          <Hidden smUp implementation="css">
-            <Drawer
-              container={container}
-              variant="temporary"
-              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-              classes={{
-                paper: classes.drawerPaper,
-              }}
-              ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
-              }}
-            >
-              <Menu />
-            </Drawer>
-          </Hidden>
-          <Hidden xsDown implementation="css">
-            <Drawer
-              classes={{
-                paper: classes.drawerPaper,
-              }}
-              variant="permanent"
-              open
-            >
-              <Menu />
-            </Drawer>
-          </Hidden>
-        </nav>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <MuiThemeProvider theme={createMuiTheme(theme)}>
-            <Route path="/minimal" exact component={Minimal} />
-            <Route path="/readonly" exact component={Readonly} />
-            <Route path="/theming" exact component={Themes} />
-            <Route path="/tests" exact component={Tests} />
-            <Route path="/light" exact component={Light} />
-            <Route path="/headless" exact component={Headless} />
-            <Route path="/with-title" exact component={WithTitle} />
-            <Route path="/full-feature" exact component={Playground} />
-            <Route path="/" exact component={GettingStarted} />
-          </MuiThemeProvider>
-        </main>
-      </div>
+      <MuiThemeProvider theme={Goplayground.createTheme()}>
+        <div className={classes.root}>
+          <CssBaseline/>
+          <AppBar position="fixed" className={classes.appBar}>
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+                className={classes.menuButton}
+              >
+                <MenuIcon/>
+              </IconButton>
+              <Typography variant="h6" noWrap>
+                Golang playground component
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <nav className={classes.drawer} aria-label="mailbox folders">
+            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+            <Hidden smUp implementation="css">
+              <Drawer
+                container={container}
+                variant="temporary"
+                anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                classes={{
+                  paper: classes.drawerPaper,
+                }}
+                ModalProps={{
+                  keepMounted: true, // Better open performance on mobile.
+                }}
+              >
+                <Menu/>
+              </Drawer>
+            </Hidden>
+            <Hidden xsDown implementation="css">
+              <Drawer
+                classes={{
+                  paper: classes.drawerPaper,
+                }}
+                variant="permanent"
+                open
+              >
+                <Menu/>
+              </Drawer>
+            </Hidden>
+          </nav>
+          <main className={classes.content}>
+            <div className={classes.toolbar}/>
+            <Route path="/minimal" exact component={Minimal}/>
+            <Route path="/readonly" exact component={Readonly}/>
+            <Route path="/theming" exact component={Themes}/>
+            <Route path="/tests" exact component={Tests}/>
+            <Route path="/light" exact component={Light}/>
+            <Route path="/headless" exact component={Headless}/>
+            <Route path="/with-title" exact component={WithTitle}/>
+            <Route path="/full-feature" exact component={Playground}/>
+            <Route path="/" exact component={GettingStarted}/>
+          </main>
+        </div>
+      </MuiThemeProvider>
     </Router>
   );
 }
@@ -165,6 +171,6 @@ ResponsiveDrawer.propTypes = {
 };
 
 render(
-  <ResponsiveDrawer />,
+  <ResponsiveDrawer/>,
   document.getElementById('root'),
 );

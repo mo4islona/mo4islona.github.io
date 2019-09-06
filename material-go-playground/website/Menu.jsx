@@ -38,7 +38,13 @@ export default function AppMenu() {
 
   return (
     <div>
-      <div className={classes.toolbar}></div>
+      <div className={classes.toolbar}>
+        <img
+          src="https://golang.org/lib/godoc/images/go-logo-blue.svg"
+          height={40}
+          style={{ position: 'relative', top: 3, marginLeft: 12, left: 12 }}
+        />
+      </div>
       <div>
         <Divider/>
         <List disablePadding className={classes.list}>
