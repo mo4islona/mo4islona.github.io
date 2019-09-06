@@ -67,11 +67,17 @@ export default function AppMenu() {
           <ListItem button divider component={AdapterLink} to={"/with-title"}>
             <ListItemText primary="With title"/>
           </ListItem>
+          {/*<ListItem button divider component={AdapterLink} to={"/multiple-code"}>*/}
+          {/*  <ListItemText primary="Multiple code"/>*/}
+          {/*</ListItem>*/}
           <ListItem button divider component={AdapterLink} to={"/headless"}>
-            <ListItemText primary="Headless"/>
+            <ListItemText primary="Headless & readonly"/>
           </ListItem>
           <ListItem button divider component={AdapterLink} to={"/full-feature"}>
             <ListItemText primary="Full feature"/>
+          </ListItem>
+          <ListItem button divider component={AdapterLink} target={"_blank"} to={"/widget"}>
+            <ListItemText primary="Widget"/>
           </ListItem>
         </List>
       </div>

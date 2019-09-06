@@ -18,15 +18,15 @@ import Goplayground from 'material-go-playground';
 
 
 import Menu from './Menu';
-import GettingStarted from './pages/GettingStarted';
-import Readonly from './pages/Readonly';
-import Minimal from './pages/Minimal';
-import Light from './pages/Light';
-import Headless from './pages/Headless';
-import Themes from './pages/Themes';
-import Tests from './pages/Tests';
-import Playground from './pages/Playground';
-import WithTitle from './pages/WithTitle';
+import GettingStarted from './GettingStarted';
+import Minimal from './examples/Minimal';
+import Light from './examples/Light';
+import Headless from './examples/Headless';
+import Themes from './examples/Themes';
+import Tests from './examples/Tests';
+import Playground from './examples/Playground';
+import WithTitle from './examples/WithTitle';
+import MultipleCodes from './examples/MultipleCodes';
 
 const history = createBrowserHistory({
   basename: process.env.production ? 'material-go-playground/' : ''
@@ -78,7 +78,7 @@ const theme = {
       fontSize: '1.8rem',
     },
     h4: {
-      margin: '5px 0'
+      margin: '24px 0 12px 0'
     }
   },
 }
@@ -94,7 +94,7 @@ function ResponsiveDrawer(props) {
 
   return (
     <Router history={history}>
-      <MuiThemeProvider theme={Goplayground.createTheme()}>
+      <MuiThemeProvider theme={Goplayground.createTheme('light', theme)}>
         <div className={classes.root}>
           <CssBaseline/>
           <AppBar position="fixed" className={classes.appBar}>
@@ -147,11 +147,11 @@ function ResponsiveDrawer(props) {
           <main className={classes.content}>
             <div className={classes.toolbar}/>
             <Route path="/minimal" exact component={Minimal}/>
-            <Route path="/readonly" exact component={Readonly}/>
             <Route path="/theming" exact component={Themes}/>
             <Route path="/tests" exact component={Tests}/>
             <Route path="/light" exact component={Light}/>
             <Route path="/headless" exact component={Headless}/>
+            <Route path="//multiple-code" exact component={MultipleCodes}/>
             <Route path="/with-title" exact component={WithTitle}/>
             <Route path="/full-feature" exact component={Playground}/>
             <Route path="/" exact component={GettingStarted}/>

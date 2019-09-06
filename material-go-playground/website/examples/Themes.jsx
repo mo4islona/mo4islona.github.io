@@ -1,7 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
-import Highlight from 'react-highlight'
 import GoPlayGround from "material-go-playground";
 import orange from "@material-ui/core/colors/orange";
 import green from "@material-ui/core/colors/green";

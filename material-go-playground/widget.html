@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Go Playground</title>
+    <style rel="stylesheet">
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+
+        #editor {
+            width: 70%;
+            border: 1px solid #aaa
+        }
+
+        .center {
+            width: 700px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="center">
+    <H1>H!, Go is awesome</H1>
+    <H2>Try it</H2>
+    <div id="editor"></div>
+</div>
+<script src="https://unpkg.com/material-go-playground@0.1.8/dist/widget.min.js"></script>
+<script>
+  const code = `
+    package main
+
+    import (
+      "fmt"
+      "time"
+      "math/rand"
+    )
+
+    func main() {
+      for i:=0; i<=30; i++ {
+        fmt.Println("Hello, playground")
+        time.Sleep(time.Duration(rand.Intn(5)))
+      }
+}`
+
+  GoPlayground.create(document.getElementById('editor'), {
+    code: code,
+    title: 'Hello, world!',
+    color: 'light',
+    editorHeight: 250,
+    resultHeight: 80,
+
+  })
+</script>
+</body>
+</html>

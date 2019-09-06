@@ -9,10 +9,11 @@
   "main": "dist/main.js",
   "scripts": {
     "start": "webpack-dev-server  --config webpack.dev.config.js",
-    "build": "webpack --config  webpack.build.config.js",
+    "build": "NODE_ENV=production webpack --config  webpack.build.config.js",
     "clean": "rm -rf build",
     "lint": "eslint . --ext .js,.jsx --fix",
-    "test": "jest"
+    "test": "jest",
+    "generate": "cd ./examples/ && node _parser && eslint . --fix"
   },
   "license": "MIT",
   "dependencies": {
@@ -20,10 +21,10 @@
     "@material-ui/icons": "^4.2.1",
     "@material-ui/styles": "^4.3.0",
     "history": "^4.9.0",
-    "material-go-playground": "^0.1.7",
+    "material-go-playground": "^0.1.9",
+    "prismjs": "^1.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-highlight": "^0.12.0",
     "react-router-dom": "^5.0.1"
   },
   "devDependencies": {

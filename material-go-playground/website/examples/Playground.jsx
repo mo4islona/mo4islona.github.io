@@ -1,6 +1,5 @@
 import React from 'react';
-import Highlight from 'react-highlight';
-import GoPlayground from 'material-go-playground';
+import GoPlayground, { ShareButton } from 'material-go-playground';
 
 const code = `package main
 
@@ -19,15 +18,14 @@ export default function Playground() {
         code={code}
         title={'Go playground'}
         appendButtons={(
-          <GoPlayground.ShareButton
+          <ShareButton
             path="share"
             onError={alert}
           >
-          Share
-          </GoPlayground.ShareButton>
-      )}
+            Share
+          </ShareButton>
+        )}
       />
-
     </div>
   );
 }
