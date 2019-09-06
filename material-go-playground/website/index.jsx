@@ -17,17 +17,19 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 import Menu from './Menu';
-import GettingStarted from './GettingStarted';
-import Readonly from './Readonly';
-import Minimal from './Minimal';
-import Light from './Light';
-import Headless from './Headless';
-import Themes from './Themes';
-import Tests from './Tests';
-import Playground from './Playground';
-import WithTitle from './WithTitle';
+import GettingStarted from './pages/GettingStarted';
+import Readonly from './pages/Readonly';
+import Minimal from './pages/Minimal';
+import Light from './pages/Light';
+import Headless from './pages/Headless';
+import Themes from './pages/Themes';
+import Tests from './pages/Tests';
+import Playground from './pages/Playground';
+import WithTitle from './pages/WithTitle';
 
-const history = createBrowserHistory();
+const history = createBrowserHistory({
+  basename: process.env.production ? 'material-go-playground/' : ''
+});
 
 const drawerWidth = 240;
 

@@ -41,6 +41,13 @@ module.exports = {
     new webpack.NamedModulesPlugin(), // prints more readable module names in the browser console on HMR updates
     new webpack.LoaderOptionsPlugin({
       debug: true
+    }),
+    new webpack.DefinePlugin({
+      process: {
+        env: {
+          production: JSON.stringify(process.env.NODE_ENV==='production')
+        }
+      },
     })
   ],
   performance: {

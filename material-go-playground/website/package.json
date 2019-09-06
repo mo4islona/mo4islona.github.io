@@ -8,8 +8,8 @@
   },
   "main": "dist/main.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.config.js",
-    "build": "webpack --config webpack.build.config.js",
+    "start": "webpack-dev-server  --config webpack.dev.config.js",
+    "build": "webpack --config  webpack.build.config.js",
     "clean": "rm -rf build",
     "lint": "eslint . --ext .js,.jsx --fix",
     "test": "jest"
