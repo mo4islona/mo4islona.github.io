@@ -21,7 +21,7 @@
     "@material-ui/icons": "^4.2.1",
     "@material-ui/styles": "^4.3.0",
     "history": "^4.9.0",
-    "material-go-playground": "^0.1.9",
+    "material-go-playground": "^0.2.2",
     "prismjs": "^1.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
