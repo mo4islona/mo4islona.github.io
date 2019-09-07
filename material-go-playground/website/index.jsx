@@ -13,8 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Goplayground from 'material-go-playground';
-// import Goplayground from '../../../../material-go-playground/dist';
+import Goplayground, { createTheme } from 'material-go-playground';
 
 
 import Menu from './Menu';
@@ -27,6 +26,7 @@ import Tests from './examples/Tests';
 import Playground from './examples/Playground';
 import WithTitle from './examples/WithTitle';
 import MultipleCodes from './examples/MultipleCodes';
+import Errors from './examples/Errors';
 
 const history = createBrowserHistory({
   basename: process.env.production ? 'material-go-playground/' : ''
@@ -94,7 +94,7 @@ function ResponsiveDrawer(props) {
 
   return (
     <Router history={history}>
-      <MuiThemeProvider theme={Goplayground.createTheme('light', theme)}>
+      <MuiThemeProvider theme={createTheme('light', theme)}>
         <div className={classes.root}>
           <CssBaseline/>
           <AppBar position="fixed" className={classes.appBar}>
@@ -154,6 +154,7 @@ function ResponsiveDrawer(props) {
             <Route path="//multiple-code" exact component={MultipleCodes}/>
             <Route path="/with-title" exact component={WithTitle}/>
             <Route path="/full-feature" exact component={Playground}/>
+            <Route path="/errors" exact component={Errors}/>
             <Route path="/" exact component={GettingStarted}/>
           </main>
         </div>

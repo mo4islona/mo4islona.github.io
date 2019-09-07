@@ -9,27 +9,107 @@
             margin: 0;
             padding: 0;
             min-height: 100%;
+            background: #fce4ec;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+
+        h1 {
+            color: #bc477b
+        }
+
+        h2 {
+            color: #bc477b
         }
 
         #editor {
             width: 70%;
-            border: 1px solid #aaa
+            height: 320px;
+        }
+
+        .loader {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            height: 100%;
+            border: 1px solid #fff;
+            background: #fff;
+            border-radius: 4px;
         }
 
         .center {
             width: 700px;
             margin: 0 auto;
         }
+
+        .lds-ellipsis {
+            display: inline-block;
+            position: relative;
+            width: 64px;
+            height: 64px;
+        }
+        .lds-ellipsis div {
+            position: absolute;
+            top: 27px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #01acd7;
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+        .lds-ellipsis div:nth-child(1) {
+            left: 6px;
+            animation: lds-ellipsis1 0.6s infinite;
+        }
+        .lds-ellipsis div:nth-child(2) {
+            left: 6px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+        .lds-ellipsis div:nth-child(3) {
+            left: 26px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+        .lds-ellipsis div:nth-child(4) {
+            left: 45px;
+            animation: lds-ellipsis3 0.6s infinite;
+        }
+        @keyframes lds-ellipsis1 {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        @keyframes lds-ellipsis3 {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(0);
+            }
+        }
+        @keyframes lds-ellipsis2 {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(19px, 0);
+            }
+        }
+
     </style>
 </head>
 <body>
 <div class="center">
-    <H1>H!, Go is awesome</H1>
+    <H1>Go is awesome ❤</H1>
     <H2>Try it</H2>
-    <div id="editor"></div>
+    <div id="editor">
+        <div class="loader">
+            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+        </div>
+    </div>
 </div>
-<script src="https://unpkg.com/material-go-playground@0.1.8/dist/widget.min.js"></script>
+<script src="https://unpkg.com/material-go-playground@0.2.2/dist/widget.min.js"></script>
 <script>
   const code = `
     package main
@@ -46,14 +126,20 @@
         time.Sleep(time.Duration(rand.Intn(5)))
       }
 }`
-
+    console.log(GoPlayground.createTheme)
   GoPlayground.create(document.getElementById('editor'), {
     code: code,
     title: 'Hello, world!',
     color: 'light',
     editorHeight: 250,
     resultHeight: 80,
-
+    theme: {
+      palette: {
+        primary: {
+          main: '#ad1457'
+        }
+      }
+    }
   })
 </script>
 </body>
