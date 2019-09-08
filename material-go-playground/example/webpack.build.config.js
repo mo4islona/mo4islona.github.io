@@ -12,7 +12,7 @@ module.exports = {
     './index.jsx', // the entry point of our app
   ],
   output: {
-    path: path.resolve('../')
+    path: path.resolve('./')
   },
   module: {
     rules: [
@@ -20,18 +20,7 @@ module.exports = {
         test: /\.jsx?$/,
         use: ['babel-loader'],
         exclude: /node_modules/,
-      },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-        ],
-      },
+      }
     ],
   },
   plugins: [
@@ -39,22 +28,12 @@ module.exports = {
       template: 'index.tpl.html',
       output: 'index.html',
     }),
-    new webpack.HotModuleReplacementPlugin(), // enable HMR globally
-    new webpack.NamedModulesPlugin(), // prints more readable module names in the browser console on HMR updates
     new webpack.LoaderOptionsPlugin({
-      debug: true
     }),
-    new webpack.DefinePlugin({
-      process: {
-        env: {
-          production: JSON.stringify(process.env.NODE_ENV==='production')
-        }
-      },
-    })
   ],
   optimization: {
-    minimizer: [new TerserPlugin({})],
-    runtimeChunk: 'single',
+    minimize: true,
+    // minimizer: [new TerserPlugin()],
     splitChunks: {
       cacheGroups: {
         vendor: {
@@ -68,5 +47,6 @@ module.exports = {
 
   performance: {
     hints: false,
-  }
+  },
+  devtool: false,
 };

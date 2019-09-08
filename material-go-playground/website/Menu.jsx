@@ -4,6 +4,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ExitLink from '@material-ui/icons/ExitToApp';
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 
@@ -24,6 +26,19 @@ const useStyles = makeStyles(theme => ({
     '* a': {
       textDecoration: 'none'
     }
+  },
+  group: {
+    marginTop: 20,
+    lineHeight: '36px',
+    opacity: 0.8,
+
+  },
+  blank: {
+    display: 'flex',
+    alignItems: 'center',
+    minWidth: 0,
+    opacity: 0.2,
+    transform: 'scale(0.8)'
   }
 }));
 
@@ -33,8 +48,6 @@ const AdapterLink = React.forwardRef((props, ref) => (
 
 export default function AppMenu() {
   const classes = useStyles();
-
-  const location = window.location.href
 
   return (
     <div>
@@ -47,67 +60,46 @@ export default function AppMenu() {
       </div>
       <div>
         <Divider/>
-        <List disablePadding className={classes.list}>
-          <ListItem button divider  component={AdapterLink} to={"/"}>
+        <List className={classes.list}>
+          <ListItem button dense component={AdapterLink} to={"/"}>
             <ListItemText primary="Getting started"/>
           </ListItem>
-          <ListSubheader>Examples</ListSubheader>
-          <ListItem button divider component={AdapterLink} to={"/light"}>
+          <ListSubheader className={classes.group}>Examples</ListSubheader>
+          <ListItem button divider dense component={AdapterLink} to={"/light"}>
             <ListItemText primary="Light mode"/>
           </ListItem>
-          <ListItem button divider component={AdapterLink} to={"/minimal"}>
+          <ListItem button divider dense component={AdapterLink} to={"/minimal"}>
             <ListItemText primary="Minimal"/>
           </ListItem>
-          <ListItem button divider component={AdapterLink} to={"/theming"}>
+          <ListItem button divider dense component={AdapterLink} to={"/theming"}>
             <ListItemText primary="Theming"/>
           </ListItem>
-          <ListItem button divider component={AdapterLink} to={"/tests"}>
+          <ListItem button divider dense component={AdapterLink} to={"/tests"}>
             <ListItemText primary="Tests"/>
           </ListItem>
-          <ListItem button divider component={AdapterLink} to={"/with-title"}>
+          <ListItem button divider dense component={AdapterLink} to={"/with-title"}>
             <ListItemText primary="With title"/>
           </ListItem>
-          <ListItem button divider component={AdapterLink} to={"/errors"}>
+          <ListItem button divider dense component={AdapterLink} to={"/errors"}>
             <ListItemText primary="Errors"/>
           </ListItem>
           {/*<ListItem button divider component={AdapterLink} to={"/multiple-code"}>*/}
           {/*  <ListItemText primary="Multiple code"/>*/}
           {/*</ListItem>*/}
-          <ListItem button divider component={AdapterLink} to={"/headless"}>
+          <ListItem button divider dense component={AdapterLink} to={"/headless"}>
             <ListItemText primary="Headless & readonly"/>
           </ListItem>
-          <ListItem button divider component={AdapterLink} to={"/full-feature"}>
+          <ListItem button divider dense component={AdapterLink} target={"_blank"} to={"/example"}>
             <ListItemText primary="Full feature"/>
+            <ListItemAvatar className={classes.blank}><ExitLink  /></ListItemAvatar>
           </ListItem>
-          <ListItem button divider component={AdapterLink} target={"_blank"} to={"/widget"}>
-            <ListItemText primary="Widget on my blog"/>
+          <ListSubheader className={classes.group}>Widgets</ListSubheader>
+          <ListItem button divider dense component={AdapterLink} target={"_blank"} to={"/widget"}>
+            <ListItemText primary="Simple"/>
+            <ListItemAvatar className={classes.blank}><ExitLink   /></ListItemAvatar>
           </ListItem>
         </List>
       </div>
     </div>
   );
 }
-
-/*
-
-<MenuItem button dense>
-          <ListItemText primary="Getting started" />
-        </MenuItem>
-
-<ListSubheader>Examples</ListSubheader>
-        <ListItem dense button>
-          <ListItemText primary="Themes"/>
-        </ListItem>
-        <ListItem button dense>
-          <ListItemText primary="Readonly"/>
-        </ListItem>
-        <RouterLink className={classes.link} to="minimal"><ListItem button>
-          <ListItemText primary="Minimal"/>
-        </ListItem></RouterLink>
-        <RouterLink className={classes.link} to="playground"><ListItem button>
-          <ListItemText primary="Go Playground"/>
-        </ListItem></RouterLink>
-        <ListItem button>
-          <RouterLink to="tests"><ListItemText primary="Tests"/></RouterLink>
-        </ListItem>
- */

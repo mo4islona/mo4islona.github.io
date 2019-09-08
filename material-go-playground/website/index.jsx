@@ -23,7 +23,6 @@ import Light from './examples/Light';
 import Headless from './examples/Headless';
 import Themes from './examples/Themes';
 import Tests from './examples/Tests';
-import Playground from './examples/Playground';
 import WithTitle from './examples/WithTitle';
 import MultipleCodes from './examples/MultipleCodes';
 import Errors from './examples/Errors';
@@ -79,7 +78,7 @@ const theme = {
     },
     h4: {
       margin: '24px 0 12px 0'
-    }
+    },
   },
 }
 
@@ -153,7 +152,6 @@ function ResponsiveDrawer(props) {
             <Route path="/headless" exact component={Headless}/>
             <Route path="//multiple-code" exact component={MultipleCodes}/>
             <Route path="/with-title" exact component={WithTitle}/>
-            <Route path="/full-feature" exact component={Playground}/>
             <Route path="/errors" exact component={Errors}/>
             <Route path="/" exact component={GettingStarted}/>
           </main>
