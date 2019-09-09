@@ -7,13 +7,14 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import Avatar from '@material-ui/core/Avatar'
 import avatar from './avatar.jpg';
 import Paper from "@material-ui/core/Paper";
-import LocationIcon from "@material-ui/icons/LocationCity";
+import LocationIcon from "@material-ui/icons/Room";
+import CupIcon from "@material-ui/icons/EmojiEvents";
+import CodeIcon from "@material-ui/icons/Code";
 import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import IconButton from "@material-ui/core/IconButton";
 
@@ -25,7 +26,6 @@ const theme = {
 
 const Github = () => {
   return <svg
-    style={{opacity: 0.4}}
     className="MuiSvgIcon-root"
     focusable="false"
     viewBox="0 0 24 24"
@@ -52,6 +52,10 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.secondary.light
       }
     },
+    '.MuiListItemText-secondary': {
+      opacity: 0.6,
+      fontSize: '0.7rem'
+    }
   },
   root: {
     display: 'flex',
@@ -69,7 +73,14 @@ const useStyles = makeStyles((theme) => ({
   link: {
     '&:hover': {
       color: 'inherit'
-    }
+    },
+    '& svg': {
+      opacity: 0.4
+    },
+  },
+  small: {
+    opacity: 0.6,
+    fontSize: '0.7rem'
   }
 }));
 
@@ -82,13 +93,13 @@ function App() {
         <Grid container spacing={40}>
           <Grid item alignContent="space-around" alignItems="center">
             <Avatar alt="Eugene Formanenko" src={avatar} className={classes.avatar}/>
-            <Typography align="center" className={classes.name} variant="body1" color="textSecondary">Eugene
+            <Typography align="center" variant="body1" color="textSecondary">Eugene
               Formanenko</Typography>
-            <Typography align="center" className={classes.name} variant="body2" color="textSecondary">Full-stack
+            <Typography align="center" variant="body2" color="textSecondary">Full-stack
               developer</Typography>
-            <Typography align="center" className={classes.name} variant="body2" color="textSecondary">
+            <Typography align="center" variant="body2" color="textSecondary">
               <Grid container justify={"center"} alignItems={"center"}>
-                <Grid item><LocationIcon style={{opacity: 0.4, transform: 'scale(0.8)'}}/></Grid>
+                <Grid item><LocationIcon style={{opacity: 0.4, marginTop: 3, transform: 'scale(0.8)'}}/></Grid>
                 <Grid item>Moscow, Russia</Grid>
               </Grid>
             </Typography>
@@ -97,6 +108,16 @@ function App() {
               <Chip className={classes.chip} variant="outlined" size="small" label="Golang"></Chip>
               <Chip className={classes.chip} variant="outlined" size="small" label="React"></Chip>
             </Grid>
+            <Typography style={{marginTop: 5, opacity: 0.9}} align="center" variant="body2" color="textSecondary">
+              <Grid container justify={"center"} alignItems={"center"}>
+                <Grid item>
+                  <CupIcon
+                    fontSize='small'
+                    style={{opacity: 0.5, marginRight: 4, marginTop: 2, color: '#ffd400'}}/>
+                </Grid>
+                <Grid item style={{fontSize: '0.7rem'}}>Yandex Hall of Fame</Grid>
+              </Grid>
+            </Typography>
           </Grid>
           <Grid item>
             <List dense>
@@ -106,13 +127,13 @@ function App() {
                     className={classes.link}
                     target="_blank"
                     href="https://github.com/mo4islona/node-blockly"
-                    edge="end"
                   >
                     <Github/>
                   </IconButton>
                 </ListItemIcon>
                 <ListItemText
                   primary={<a href="http://mo4islona.github.io/blockly/" target="_blank">Node blockly</a>}
+                  secondary="Google Blockly port for Node.js via CommonJS module"
                 />
               </ListItem>
               <ListItem>
@@ -121,23 +142,67 @@ function App() {
                     className={classes.link}
                     target="_blank"
                     href="https://github.com/mo4islona/material-go-playground"
-                    edge="end"
                   >
                     <Github/>
                   </IconButton>
                 </ListItemIcon>
                 <ListItemText
-                  primary={<a href="http://mo4islona.github.io/material-go-playground/" target="_blank">Go material
-                    playground</a>}
+                  primary={
+                    <a href="http://mo4islona.github.io/material-go-playground/" target="_blank">
+                      Go material playground
+                    </a>
+                  }
+                  secondary="Flexible, lightweight sandbox client for goland playground"
                 />
-
               </ListItem>
               <ListItem>
-                <ListItemText inset
-                  primary={<a href="https://js1k.com/2015-hypetrain/demo/2241" target="_blank">JS1K - Tear the
-                    curtain</a>}
+                <ListItemIcon>
+                  <IconButton
+                    className={classes.link}
+                    target="_blank"
+                    href="https://js1k.com/2015-hypetrain/details/2241"
+                  >
+                    <CodeIcon/>
+                  </IconButton>
+                </ListItemIcon>
+                <ListItemText
+                  primary={
+                    <a href="https://js1k.com/2015-hypetrain/demo/2241" target="_blank">
+                      JS1K - Tear the curtain
+                    </a>
+                  }
+                  secondary="The JavaScript code golfing competition"
                 />
               </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <IconButton
+                    className={classes.link}
+                    target="_blank"
+                    href="https://github.com/mo4islona/zachetka-frontend-test/"
+                  >
+                    <Github/>
+                  </IconButton>
+                </ListItemIcon>
+                <ListItemText
+                  primary={
+                    <a href="https://mo4islona.github.io/zachetka-frontend-test/" target="_blank">
+                      Some JS test task
+                    </a>
+                  }
+                  secondary={
+                    <span>
+                      <a style={{color: '#afa8a8', fontSize: '0.7rem'}}
+                         href="https://github.com/mo4islona/zachetka-frontend-test/blob/master/README.md" target="_blank">
+                        Rules
+                      </a>
+                      &nbsp;
+                      <span className={classes.small}>(2015)</span>
+                    </span>
+                  }
+                />
+              </ListItem>
+
             </List>
           </Grid>
         </Grid>
