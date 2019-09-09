@@ -46,6 +46,10 @@ const AdapterLink = React.forwardRef((props, ref) => (
   <RouterLink innerRef={ref} {...props} />
 ));
 
+const Link = React.forwardRef((props, ref) => (
+  <a innerRef={ref} {...props} />
+));
+
 export default function AppMenu() {
   const classes = useStyles();
 
@@ -89,12 +93,12 @@ export default function AppMenu() {
           <ListItem button divider dense component={AdapterLink} to={"/headless"}>
             <ListItemText primary="Headless & readonly"/>
           </ListItem>
-          <ListItem button divider dense component={AdapterLink} target={"_blank"} to={"/example"}>
+          <ListItem button divider dense component={Link} target={"_blank"} href={"/material-go-playground/example"}>
             <ListItemText primary="Full feature"/>
             <ListItemAvatar className={classes.blank}><ExitLink  /></ListItemAvatar>
           </ListItem>
           <ListSubheader className={classes.group}>Widgets</ListSubheader>
-          <ListItem button divider dense component={AdapterLink} target={"_blank"} to={"/widget"}>
+          <ListItem button divider dense component={Link} target={"_blank"} href={"/material-go-playground/widget"}>
             <ListItemText primary="Simple"/>
             <ListItemAvatar className={classes.blank}><ExitLink   /></ListItemAvatar>
           </ListItem>
