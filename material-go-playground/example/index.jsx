@@ -17,9 +17,9 @@ func main() {
   }
 }`;
 
-function Logo({style}) {
+function Logo({style, color = '#00acd7'}) {
   return <svg height="20" viewBox="0 0 207 78" xmlns="http://www.w3.org/2000/svg" style={style}>
-    <g fill="#fff" fillRule="evenodd">
+    <g fill={color} fillRule="evenodd">
       <path d="m16.2 24.1c-.4 0-.5-.2-.3-.5l2.1-2.7c.2-.3.7-.5 1.1-.5h35.7c.4 0 .5.3.3.6l-1.7 2.6c-.2.3-.7.6-1 .6z"/>
       <path d="m1.1 33.3c-.4 0-.5-.2-.3-.5l2.1-2.7c.2-.3.7-.5 1.1-.5h45.6c.4 0 .6.3.5.6l-.8 2.4c-.1.4-.5.6-.9.6z"/>
       <path d="m25.3 42.5c-.4 0-.5-.3-.3-.6l1.4-2.5c.2-.3.6-.6 1-.6h20c.4 0 .6.3.6.7l-.2 2.4c0 .4-.4.7-.7.7z"/>
@@ -39,8 +39,9 @@ function App() {
   const _height = height - (width > 500 ? 64 : 56) - 8;
 
   return <GoPlayground
-    title={width > 500 ? "The Go playground" : (width < 350 ? null : <Logo style={{position: "relative", top: 4, left: -4}}/>)}
+    title={width > 500 ? "The Go playground" : (width < 350 ? null : <Logo color="#fff" style={{position: "relative", top: 4, left: -4}}/>)}
     code={code}
+    color={localStorage.getItem('color') || 'light'}
     appendButtons={(
       <ShareButton
         path="share"
@@ -52,6 +53,18 @@ function App() {
     useTextOnButton={width > 500}
     editorHeight={_height * 0.7}
     resultHeight={_height * 0.3}
+    onColorChange={(color) => {
+      localStorage.setItem('color', color)
+    }}
+    onRun={()=>{
+      console.log('Run started')
+    }}
+    onFormat={()=>{
+      console.log('Format started')
+    }}
+    onImportFormat={(val) => {
+      localStorage.setItem('imports', val)
+    }}
   />
 }
 
