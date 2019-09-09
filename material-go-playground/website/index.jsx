@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { createHashHistory } from 'history';
 import { render } from 'react-dom';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
@@ -15,7 +15,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Goplayground, { createTheme } from 'material-go-playground';
 
-
 import Menu from './Menu';
 import GettingStarted from './GettingStarted';
 import Minimal from './examples/Minimal';
@@ -27,9 +26,7 @@ import WithTitle from './examples/WithTitle';
 import MultipleCodes from './examples/MultipleCodes';
 import Errors from './examples/Errors';
 
-const history = createBrowserHistory({
-  basename: process.env.production ? 'material-go-playground/' : ''
-});
+const history = createHashHistory();
 
 const drawerWidth = 240;
 
