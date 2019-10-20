@@ -70,6 +70,61 @@
         button:hover {
             background: #603b5f;
         }
+
+        .tabs__content {
+            display: none; /* по умолчанию прячем все блоки */
+        }
+        .tabs__content.active {
+            display: block; /* по умолчанию показываем нужный блок */
+        }
+
+        .tabs__caption {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            margin: -1px 0 0 -1px;
+            padding: 0;
+        }
+        .tabs__caption li:last-child:before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: -2px;
+            z-index: -1;
+            height: 5px;
+        }
+        .tabs__caption:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+        .tabs__caption li {
+            padding: 9px 15px;
+            margin: 1px 0 0 1px;
+            background: #3f3f3f;
+            color: #FFF;
+            position: relative;
+            border: solid #3f3f3f;
+            border-width: 2px 2px 0;
+            border-radius: 5px 5px 0 0;
+            text-align: center;
+        }
+        .tabs__caption li:not(.active) {
+            cursor: pointer;
+        }
+        .tabs__caption li:not(.active):hover {
+            background: #603b5f;
+            border-color: #603b5f;
+        }
+        .tabs__caption .active {
+            background: #FFF;
+            color: #000;
+            border-color: #3f3f3f;
+        }
+        .tabs__content code {
+            padding: 18px;
+        }
     </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css" />
@@ -454,18 +509,42 @@
         </xml>
     </div>
     <div class="code-wrapper">
-        <p class="label">JS</p>
-        <pre id="js"><code class="javascript"></code></pre>
-        <p class="label">PHP</p>
-        <pre id="php"><code class="php"></code></pre>
-        <p class="label">Lua</p>
-        <pre id="lua"><code class="lua"></code></pre>
-        <p class="label">Dart</p>
-        <pre id="dart"><code class="dart"></code></pre>
-        <p class="label">Python</p>
-        <pre id="python"><code class="python"></code></pre>
-        <p class="label">XML</p>
-        <pre id="xml"><code class="xml"></code></pre>
+        <div class="tabs">
+
+            <ul class="tabs__caption">
+                <li class="active">JS</li>
+                <li>PHP</li>
+                <li>Lua</li>
+                <li>Dart</li>
+                <li>Python</li>
+                <li>XML</li>
+            </ul>
+
+            <div class="tabs__content active">
+                <pre id="js"><code class="javascript"></code></pre>
+            </div>
+
+            <div class="tabs__content">
+                <pre id="lua"><code class="lua"></code></pre>
+            </div>
+
+            <div class="tabs__content">
+                <pre id="dart"><code class="dart"></code></pre>
+            </div>
+
+            <div class="tabs__content">
+                <pre id="python"><code class="python"></code></pre>
+            </div>
+
+            <div class="tabs__content">
+                <pre id="php"><code class="php"></code></pre>
+            </div>
+
+            <div class="tabs__content">
+                <pre id="xml"><code class="xml"></code></pre>
+            </div>
+        </div>
+
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
@@ -477,5 +556,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/languages/lua.min.js" integrity="sha256-K92Gf25zBrh58ZlALdvZik/93u+SkrkukisdjQ0uLkg=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/languages/python.min.js" integrity="sha256-68czD4LOxm3vDFkFAirVhzdq3N3aXwf8BT4q9kb3kHM=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/languages/xml.min.js" integrity="sha256-68czD4LOxm3vDFkFAirVhzdq3N3aXwf8BT4q9kb3kHM=" crossorigin="anonymous"></script>
+<script>
+  $(function() {
+    $('ul.tabs__caption').on('click', 'li:not(.active)', function() {
+      $(this)
+        .addClass('active').siblings().removeClass('active')
+        .closest('div.tabs').find('div.tabs__content').removeClass('active').eq($(this).index()).addClass('active');
+    });
+
+  });
+</script>
 </body>
 </html>
