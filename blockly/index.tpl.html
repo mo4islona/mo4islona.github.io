@@ -28,19 +28,22 @@
         .demo {
             display: flex;
             align-items: flex-start;
-            justify-content: space-between;
+            justify-content: flex-start;
             overflow: auto;
         }
 
         .demo > div {
-            flex: 1 1
+            margin: 0 18px
+        }
+
+        .demo > div+div {
+            flex: 1
         }
 
         .locale-wrapper {
             margin-bottom: 10px;
             display: flex;
             align-items: center;
-            margin-left: 18px;
         }
         .locale-wrapper > span {
             font-size: 1.2rem;

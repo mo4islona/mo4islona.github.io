@@ -92,5 +92,5 @@ module.exports = {
       inject: true,
     }),
   ],
-  devtool: process.env.NODE_ENV === 'production' ? 'source-map' : 'eval',
+  devtool: process.env.NODE_ENV === 'production' ? undefined : 'eval',
 };
