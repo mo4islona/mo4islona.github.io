@@ -103,12 +103,7 @@ function App() {
                 <Grid item>Moscow, Russia</Grid>
               </Grid>
             </Typography>
-            <Grid container justify={"center"}>
-              <Chip className={classes.chip} variant="outlined" size="small" label="NodeJS"></Chip>
-              <Chip className={classes.chip} variant="outlined" size="small" label="Golang"></Chip>
-              <Chip className={classes.chip} variant="outlined" size="small" label="React"></Chip>
-            </Grid>
-            <Typography style={{marginTop: 5, opacity: 0.9}} align="center" variant="body2" color="textSecondary">
+            <Typography style={{marginBottom: 5, opacity: 0.9}} align="center" variant="body2" color="textSecondary">
               <Grid container justify={"center"} alignItems={"center"}>
                 <Grid item>
                   <CupIcon
@@ -118,6 +113,11 @@ function App() {
                 <Grid item style={{fontSize: '0.7rem'}}>Yandex Hall of Fame</Grid>
               </Grid>
             </Typography>
+            <Grid container justify={"center"}>
+              <Chip className={classes.chip} variant="outlined" size="small" label="NodeJS" />
+              <Chip className={classes.chip} variant="outlined" size="small" label="Golang" />
+              <Chip className={classes.chip} variant="outlined" size="small" label="React" />
+            </Grid>
           </Grid>
           <Grid item>
             <List dense>
@@ -179,6 +179,34 @@ function App() {
                   <IconButton
                     className={classes.link}
                     target="_blank"
+                    href="https://github.com/mo4islona/lingocard-test/"
+                  >
+                    <Github/>
+                  </IconButton>
+                </ListItemIcon>
+                <ListItemText
+                  primary={
+                    <a href="https://github.com/mo4islona/lingocard-test" target="_blank">
+                      Some Node.js test task
+                    </a>
+                  }
+                  secondary={
+                    <span>
+                      <a style={{color: '#afa8a8', fontSize: '0.7rem'}}
+                         href="https://github.com/mo4islona/lingocard-test/blob/master/REQUIREMENTS.md" target="_blank">
+                        Rules
+                      </a>
+                      &nbsp;
+                      <span className={classes.small}>(2020)</span>
+                    </span>
+                  }
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <IconButton
+                    className={classes.link}
+                    target="_blank"
                     href="https://github.com/mo4islona/zachetka-frontend-test/"
                   >
                     <Github/>
@@ -187,7 +215,7 @@ function App() {
                 <ListItemText
                   primary={
                     <a href="https://mo4islona.github.io/zachetka-frontend-test/" target="_blank">
-                      Some JS test task
+                      Some Frontend JS test task
                     </a>
                   }
                   secondary={
