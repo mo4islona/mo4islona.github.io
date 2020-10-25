@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { render } from 'react-dom';
 import GoPlayground, { ShareButton } from 'material-go-playground';
 
-const code = `package main
+const defaultCode = `package main
 
 import (
   "fmt"
@@ -36,7 +36,13 @@ function Logo({style, color = '#00acd7'}) {
 
 function App() {
   const {width, height} = useWindowSize();
+  const {code, loading} = useSnippet();
+
   const _height = height - (width > 500 ? 64 : 56) - 8;
+
+  if(loading) {
+    return null
+  }
 
   return <GoPlayground
     title={width > 500 ? "The Go playground" : (width < 350 ? null : <Logo color="#fff" style={{position: "relative", top: 4, left: -4}}/>)}
@@ -66,6 +72,29 @@ function App() {
       localStorage.setItem('imports', val)
     }}
   />
+}
+
+function useSnippet() {
+  const snippet = window.location.hash.substring(1);
+
+  const [code, setCode] = useState(defaultCode)
+  const [loading, setLoading] = useState(snippet.length > 1)
+
+
+  useEffect(() => {
+    if(!loading) return;
+
+    fetch(`https://play.golang.org/p/${snippet}.go`).then((res) => {
+      return res.text().then((code) => {
+        setCode(code);
+        setLoading(false);
+      })
+    }).catch(() => {
+      setLoading(false);
+    })
+  }, [])
+
+  return { code, loading }
 }
 
 function useWindowSize() {

@@ -5158,10 +5158,10 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-material-go-playground@^0.2.9:
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/material-go-playground/-/material-go-playground-0.2.9.tgz#0db3d16754f0cf9374306e7faf95567c2afd7129"
-  integrity sha512-Yl33fhF5jI6rQKJdDj9LCdyQqnTB7Unnx8Y7HPe16wBadfVNRt8wjZ7InVQ3vrIHyz64/v/wRHPEneV29+aFxg==
+material-go-playground@^0.2.10:
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/material-go-playground/-/material-go-playground-0.2.10.tgz#0d8594f6da8222593aace6aa9a8d9145e0f750e9"
+  integrity sha512-g9AFfCXI96mZRq9U0f6/7fwDEvzLhb+oTRyGs0rbTgqDLo1Lko1lTtJRbeEJUuJBAusmIc3vpZZQhgqYflqD8Q==
   dependencies:
     "@material-ui/icons" "^4.2.1"
     codemirror "^5.48.2"

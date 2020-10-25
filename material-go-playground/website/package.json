@@ -17,7 +17,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/styles": "^4.10.0",
     "history": "^4.9.0",
-    "material-go-playground": "^0.2.9",
+    "material-go-playground": "^0.2.10",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0"
