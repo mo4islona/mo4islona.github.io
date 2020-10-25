@@ -27,7 +27,7 @@ export default function Tests() {
       <Grid container spacing={2}>
         <Grid item sm={6} xs={12}>
           <GoPlayGround
-            title={'Test success'}
+            title="Test success"
             code={`
 package main
 
@@ -52,7 +52,7 @@ func TestAbs(t *testing.T) {
         </Grid>
         <Grid item sm={6} xs={12}>
           <GoPlayGround
-            title={'Test fail'}
+            title="Test fail"
             code={codeTestFail}
             hideFormat
             useTextOnButton={false}

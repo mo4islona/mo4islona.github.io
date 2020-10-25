@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Github from '@material-ui/icons/Github';
 import { makeStyles } from '@material-ui/core/styles';
 import Goplayground, { createTheme } from 'material-go-playground';
 
@@ -32,7 +33,7 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   '@global': {
-    'a': {
+    a: {
       color: theme.palette.secondary.main
     }
   },
@@ -77,10 +78,10 @@ const theme = {
       margin: '24px 0 12px 0'
     },
   },
-}
+};
 
 function ResponsiveDrawer(props) {
-  const {container} = props;
+  const { container } = props;
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -92,7 +93,7 @@ function ResponsiveDrawer(props) {
     <Router history={history}>
       <MuiThemeProvider theme={createTheme('light', theme)}>
         <div className={classes.root}>
-          <CssBaseline/>
+          <CssBaseline />
           <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
               <IconButton
@@ -102,11 +103,15 @@ function ResponsiveDrawer(props) {
                 onClick={handleDrawerToggle}
                 className={classes.menuButton}
               >
-                <MenuIcon/>
+                <MenuIcon />
               </IconButton>
               <Typography variant="h6" noWrap>
                 Golang playground component
               </Typography>
+              <div style={{ flex: 1 }} />
+              <IconButton href="https://github.com/mo4islona/material-go-playground" target="_blank">
+                <Github style={{ color: '#fff' }} />
+              </IconButton>
             </Toolbar>
           </AppBar>
           <nav className={classes.drawer} aria-label="mailbox folders">
@@ -125,7 +130,7 @@ function ResponsiveDrawer(props) {
                   keepMounted: true, // Better open performance on mobile.
                 }}
               >
-                <Menu/>
+                <Menu />
               </Drawer>
             </Hidden>
             <Hidden xsDown implementation="css">
@@ -136,21 +141,21 @@ function ResponsiveDrawer(props) {
                 variant="permanent"
                 open
               >
-                <Menu/>
+                <Menu />
               </Drawer>
             </Hidden>
           </nav>
           <main className={classes.content}>
-            <div className={classes.toolbar}/>
-            <Route path="/minimal" exact component={Minimal}/>
-            <Route path="/theming" exact component={Themes}/>
-            <Route path="/tests" exact component={Tests}/>
-            <Route path="/light" exact component={Light}/>
-            <Route path="/headless" exact component={Headless}/>
-            <Route path="//multiple-code" exact component={MultipleCodes}/>
-            <Route path="/with-title" exact component={WithTitle}/>
-            <Route path="/errors" exact component={Errors}/>
-            <Route path="/" exact component={GettingStarted}/>
+            <div className={classes.toolbar} />
+            <Route path="/minimal" exact component={Minimal} />
+            <Route path="/theming" exact component={Themes} />
+            <Route path="/tests" exact component={Tests} />
+            <Route path="/light" exact component={Light} />
+            <Route path="/headless" exact component={Headless} />
+            <Route path="//multiple-code" exact component={MultipleCodes} />
+            <Route path="/with-title" exact component={WithTitle} />
+            <Route path="/errors" exact component={Errors} />
+            <Route path="/" exact component={GettingStarted} />
           </main>
         </div>
       </MuiThemeProvider>
@@ -167,6 +172,6 @@ ResponsiveDrawer.propTypes = {
 };
 
 render(
-  <ResponsiveDrawer/>,
+  <ResponsiveDrawer />,
   document.getElementById('root'),
 );

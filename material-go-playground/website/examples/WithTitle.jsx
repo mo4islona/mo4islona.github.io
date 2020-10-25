@@ -28,7 +28,9 @@ export default function WIthTitle() {
           <img
             src="https://golang.org/lib/godoc/images/go-logo-blue.svg"
             height={33}
-            style={{ position: 'relative', top: 3, marginRight: 12, left: 12 }}
+            style={{
+              position: 'relative', top: 3, marginRight: 12, left: 12
+            }}
           />
         )}
         theme={{

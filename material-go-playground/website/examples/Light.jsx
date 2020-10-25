@@ -17,7 +17,7 @@ export default function Light() {
     <div>
       <GoPlayGround
         code={code}
-        color={"light"}
+        color="light"
       />
     </div>
   );

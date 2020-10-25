@@ -17,7 +17,7 @@ export default function Headless() {
     <div>
       <GoPlayGround
         code={code}
-        color={"light"}
+        color="light"
         hideHeader
         readOnly
         resultHeight={0}

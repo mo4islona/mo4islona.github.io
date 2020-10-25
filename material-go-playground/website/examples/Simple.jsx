@@ -1,5 +1,5 @@
 import React from 'react';
-import GoPlayground from "material-go-playground";
+import GoPlayground from 'material-go-playground';
 
 const code = `package main
 
@@ -17,6 +17,5 @@ func main() {
 }`;
 
 export default function Simple() {
-  return <GoPlayground code={code}/>
+  return <GoPlayground code={code} />;
 }
-

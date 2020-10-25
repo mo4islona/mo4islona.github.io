@@ -1,22 +1,29 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import SimpleSource from './examples/Simple'
+import SimpleSource from './examples/Simple';
 
 export default function GettingStarted() {
   return (
     <div>
-      <Typography variant="body" color="textSecondary">Flexible, lightweight sandbox client for <a
-        href="https://go.googlesource.com/playground">goland playground </a></Typography>
+      <Typography variant="body" color="textSecondary">
+        Flexible, modern, lightweight UI for
+        {' '}
+        <a href="https://go.googlesource.com/playground">golang playground</a>
+      </Typography>
 
-      <Typography variant="h4" style={{marginTop: 30}}>Install</Typography>
+      <Typography variant="h4" style={{ marginTop: 30 }}>Install</Typography>
 
-      <pre><code className="language-bash">
+      <pre>
+        <code className="language-bash">
         npm -i material-go-playground
-      </code></pre>
+        </code>
+      </pre>
       or
-      <pre><code class="language-bash">
+      <pre>
+        <code className="language-bash">
         yarn add material-go-playground
-      </code></pre>
+        </code>
+      </pre>
 
       <Typography variant="h4">Example</Typography>
 
@@ -47,4 +54,4 @@ export default function GettingStarted() {
           </TableRow>
 
         </TableBody>
-      </Table>*/
+      </Table> */

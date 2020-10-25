@@ -18,7 +18,7 @@ export default function Minimal() {
         code={code}
         useTextOnButton={false}
         hideFormat
-        settingsIconStyle={{display: 'none'}}
+        settingsIconStyle={{ display: 'none' }}
       />
     </div>
   );

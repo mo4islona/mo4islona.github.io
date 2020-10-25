@@ -59,48 +59,50 @@ export default function AppMenu() {
         <img
           src="https://golang.org/lib/godoc/images/go-logo-blue.svg"
           height={40}
-          style={{ position: 'relative', top: 3, marginLeft: 12, left: 12 }}
+          style={{
+            position: 'relative', top: 3, marginLeft: 12, left: 12
+          }}
         />
       </div>
       <div>
-        <Divider/>
+        <Divider />
         <List className={classes.list}>
-          <ListItem button dense component={AdapterLink} to={"/"}>
-            <ListItemText primary="Getting started"/>
+          <ListItem button dense component={AdapterLink} to="/">
+            <ListItemText primary="Getting started" />
           </ListItem>
           <ListSubheader className={classes.group}>Examples</ListSubheader>
-          <ListItem button divider dense component={AdapterLink} to={"/light"}>
-            <ListItemText primary="Light mode"/>
+          <ListItem button divider dense component={AdapterLink} to="/light">
+            <ListItemText primary="Light mode" />
           </ListItem>
-          <ListItem button divider dense component={AdapterLink} to={"/minimal"}>
-            <ListItemText primary="Minimal"/>
+          <ListItem button divider dense component={AdapterLink} to="/minimal">
+            <ListItemText primary="Minimal" />
           </ListItem>
-          <ListItem button divider dense component={AdapterLink} to={"/theming"}>
-            <ListItemText primary="Theming"/>
+          <ListItem button divider dense component={AdapterLink} to="/theming">
+            <ListItemText primary="Theming" />
           </ListItem>
-          <ListItem button divider dense component={AdapterLink} to={"/tests"}>
-            <ListItemText primary="Tests"/>
+          <ListItem button divider dense component={AdapterLink} to="/tests">
+            <ListItemText primary="Tests" />
           </ListItem>
-          <ListItem button divider dense component={AdapterLink} to={"/with-title"}>
-            <ListItemText primary="With title"/>
+          <ListItem button divider dense component={AdapterLink} to="/with-title">
+            <ListItemText primary="With title" />
           </ListItem>
-          <ListItem button divider dense component={AdapterLink} to={"/errors"}>
-            <ListItemText primary="Errors"/>
+          <ListItem button divider dense component={AdapterLink} to="/errors">
+            <ListItemText primary="Errors" />
           </ListItem>
-          {/*<ListItem button divider component={AdapterLink} to={"/multiple-code"}>*/}
-          {/*  <ListItemText primary="Multiple code"/>*/}
-          {/*</ListItem>*/}
-          <ListItem button divider dense component={AdapterLink} to={"/headless"}>
-            <ListItemText primary="Headless & readonly"/>
+          {/* <ListItem button divider component={AdapterLink} to={"/multiple-code"}> */}
+          {/*  <ListItemText primary="Multiple code"/> */}
+          {/* </ListItem> */}
+          <ListItem button divider dense component={AdapterLink} to="/headless">
+            <ListItemText primary="Headless & readonly" />
           </ListItem>
-          <ListItem button divider dense component={Link} target={"_blank"} href={"/material-go-playground/example"}>
-            <ListItemText primary="Full feature"/>
-            <ListItemAvatar className={classes.blank}><ExitLink  /></ListItemAvatar>
+          <ListItem button divider dense component={Link} target="_blank" href="/material-go-playground/example">
+            <ListItemText primary="Full feature" />
+            <ListItemAvatar className={classes.blank}><ExitLink /></ListItemAvatar>
           </ListItem>
           <ListSubheader className={classes.group}>Widgets</ListSubheader>
-          <ListItem button divider dense component={Link} target={"_blank"} href={"/material-go-playground/widget"}>
-            <ListItemText primary="Simple"/>
-            <ListItemAvatar className={classes.blank}><ExitLink   /></ListItemAvatar>
+          <ListItem button divider dense component={Link} target="_blank" href="/material-go-playground/widget">
+            <ListItemText primary="Simple" />
+            <ListItemAvatar className={classes.blank}><ExitLink /></ListItemAvatar>
           </ListItem>
         </List>
       </div>
