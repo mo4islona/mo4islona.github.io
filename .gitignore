@@ -1,1 +1,9 @@
 .idea/
+.DS_Store
+.claude/
+node_modules/
+
+# Build artifacts (published via GitHub Actions)
+/index.html
+/static/
+app/dist/
