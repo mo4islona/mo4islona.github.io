@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>JS1k 2015 — "Tear the curtain!" by Eugene Formanenko</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background: #16191a;
+        overflow: hidden;
+      }
+      canvas {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+    <script>
+      // Minimal js1k 2015 harness: the demo expects globals a/b/c plus a RAF shim.
+      // Internal canvas size matches the curtain dimensions baked into the demo (550x380).
+      (function () {
+        var canvas = document.getElementsByTagName('canvas')[0];
+        canvas.width = 550;
+        canvas.height = 380;
+        window.a = canvas;
+        window.b = document.body;
+        window.c = canvas.getContext('2d');
+        window.requestAnimationFrame =
+          window.requestAnimationFrame ||
+          window.webkitRequestAnimationFrame ||
+          function (f) {
+            window.setTimeout(f, 1000 / 30);
+          };
+      })();
+    </script>
+    <script src="./demo.js"></script>
+  </body>
+</html>

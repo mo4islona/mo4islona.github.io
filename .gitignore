@@ -1,9 +1,11 @@
 .idea/
 .DS_Store
 .claude/
-node_modules/
+node_modules
 
-# Build artifacts (published via GitHub Actions)
-/index.html
-/static/
-app/dist/
+# Build output (produced by `pnpm build`, deployed to Cloudflare Pages)
+dist
+dist-server
+*.tsbuildinfo
+.vite
+*.log

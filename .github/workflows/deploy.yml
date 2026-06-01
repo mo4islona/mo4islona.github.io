@@ -32,29 +32,19 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          cache-dependency-path: app/pnpm-lock.yaml
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install
-        working-directory: app
         run: pnpm install --frozen-lockfile
 
-      - name: Build app
-        working-directory: app
+      # Builds the site into dist/: the prerendered app plus everything in
+      # public/ (the demo projects), so dist is the complete site to publish.
+      - name: Build
         run: pnpm build
-
-      - name: Assemble site
-        run: |
-          mkdir -p _site
-          cp -R app/dist/. _site/
-          for dir in blockly material-go-playground physics zachetka-frontend-test; do
-            if [ -d "$dir" ]; then
-              cp -R "$dir" "_site/$dir"
-            fi
-          done
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy _site --project-name=eeff --branch=master
+          command: pages deploy dist --project-name=eeff --branch=master
