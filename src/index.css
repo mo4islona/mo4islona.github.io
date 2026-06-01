@@ -1,0 +1,305 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-bg: #303030;
+  --color-paper: #424242;
+  --color-accent: #93ecbf;
+  --color-accent-from: #b6f09a;
+  --color-accent-to: #5fe3c4;
+  --font-mono:
+    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--color-bg);
+  color: #fff;
+  font-family: var(--font-mono);
+}
+
+#root {
+  display: contents;
+}
+
+/* Gradient link text used in the project list. */
+.link-gradient {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-accent-from) 0%,
+    var(--color-accent-to) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration-color: rgba(147, 236, 191, 0.5);
+  transition: text-decoration-color 0.2s ease;
+}
+.link-gradient:hover {
+  background-image: linear-gradient(90deg, #d4f7b8 0%, #8af0d8 100%);
+  text-decoration-color: rgba(182, 245, 212, 0.8);
+}
+
+/* --- Preview entry animations (picked at random per hover) --- */
+/* 1. Pixel mosaic */
+@keyframes pixelReveal {
+  0% {
+    opacity: 0;
+    transform: scale(1.04);
+    filter: brightness(1.7) contrast(1.5) saturate(1.4);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.2) contrast(1.25) saturate(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+@keyframes mosaicClear {
+  0% {
+    opacity: 1;
+    background-size: 160px 160px;
+  }
+  70% {
+    opacity: 0.6;
+    background-size: 56px 56px;
+  }
+  100% {
+    opacity: 0;
+    background-size: 28px 28px;
+  }
+}
+
+/* 2. Chromatic converge — RGB channels fly in from the sides and merge. */
+@keyframes rgbConverge {
+  0% {
+    opacity: 0;
+    transform: scale(1.06);
+    filter: blur(2px) drop-shadow(26px 0 rgba(255, 0, 90, 0.9))
+      drop-shadow(-26px 0 rgba(0, 200, 255, 0.9));
+  }
+  55% {
+    opacity: 1;
+    filter: drop-shadow(8px 0 rgba(255, 0, 90, 0.65))
+      drop-shadow(-8px 0 rgba(0, 200, 255, 0.65));
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* 3. Datamosh — horizontal bands jump and shear before locking in. */
+@keyframes dataMosh {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 0 92% 0);
+    transform: translateX(-16px) skewX(7deg);
+  }
+  15% {
+    opacity: 1;
+    clip-path: inset(18% 0 58% 0);
+    transform: translateX(14px) skewX(-4deg);
+  }
+  32% {
+    clip-path: inset(58% 0 12% 0);
+    transform: translateX(-12px) skewX(3deg);
+  }
+  50% {
+    clip-path: inset(34% 0 44% 0);
+    transform: translateX(8px);
+  }
+  68% {
+    clip-path: inset(8% 0 72% 0);
+    transform: translateX(-5px) skewX(-2deg);
+  }
+  84% {
+    clip-path: inset(0 0 0 0);
+    transform: translateX(2px);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: none;
+  }
+}
+/* Overlay: tearing slice bars that flash during the datamosh. */
+@keyframes sliceShift {
+  0% {
+    opacity: 0.8;
+    background-position: 0 0;
+  }
+  50% {
+    opacity: 0.5;
+    background-position: 40px 0;
+  }
+  100% {
+    opacity: 0;
+    background-position: -30px 0;
+  }
+}
+
+/* 4. Hologram — content lifts in with a cyan wash and settles. */
+@keyframes holoRise {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(1.02);
+    filter: brightness(1.5) saturate(0.5) blur(3px)
+      drop-shadow(0 0 12px rgba(0, 229, 255, 0.6));
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* 5. Zoom warp — a focus pull from blurred and oversized to sharp. */
+@keyframes zoomWarp {
+  0% {
+    opacity: 0;
+    transform: scale(1.45);
+    filter: blur(26px) brightness(1.25);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes scanlineFade {
+  0% {
+    opacity: 0.55;
+  }
+  60% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+/* Soft crossfade for the incoming layer (keeps the old one visible beneath). */
+@keyframes layerFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* On-load reveal for project rows: a glitchy left-to-right wipe with a quick
+   RGB-split and skew, cascaded via per-row animation-delay. */
+@keyframes listReveal {
+  0% {
+    opacity: 0;
+    transform: translateX(-14px) skewX(10deg);
+    clip-path: inset(0 100% 0 0);
+    filter: drop-shadow(3px 0 #ff003c) drop-shadow(-3px 0 #00e5ff);
+  }
+  40% {
+    opacity: 1;
+    transform: translateX(2px) skewX(-2deg);
+    clip-path: inset(0 0 0 0);
+  }
+  60% {
+    transform: translateX(-1px);
+    filter: drop-shadow(1px 0 #ff003c) drop-shadow(-1px 0 #00e5ff);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0);
+    filter: none;
+  }
+}
+
+.list-reveal {
+  animation: listReveal 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Hover feedback fired when a new iframe preview animation starts: a bright
+   beam scans down the green left border... */
+.frame-scan {
+  position: absolute;
+  left: 0;
+  top: -45%;
+  width: 3px;
+  height: 55%;
+  border-radius: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--color-accent),
+    transparent
+  );
+  box-shadow: 0 0 10px var(--color-accent);
+  pointer-events: none;
+  animation: borderScan 0.8s ease forwards;
+}
+@keyframes borderScan {
+  0% {
+    top: -45%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+/* ...and a band of green "data" bars marches across the row, riding on a soft
+   green wash — a glitchy scan echoing the iframe reveal. */
+.frame-sweep {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(147, 236, 191, 0.025);
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(147, 236, 191, 0.02) 0 6px,
+    transparent 6px 15px
+  );
+  pointer-events: none;
+  animation: frameSweep 0.7s steps(10, end) forwards;
+}
+@keyframes frameSweep {
+  0% {
+    background-position: 0 0;
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  82% {
+    opacity: 1;
+  }
+  100% {
+    background-position: 75px 0;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+  }
+}
