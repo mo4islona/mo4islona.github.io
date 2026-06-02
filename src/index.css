@@ -236,10 +236,10 @@ body {
    beam scans down the green left border... */
 .frame-scan {
   position: absolute;
-  left: 0;
-  top: -45%;
-  width: 3px;
-  height: 55%;
+  left: -2px;
+  top: 0;
+  width: 2px;
+  height: 45%;
   border-radius: 2px;
   background: linear-gradient(
     180deg,
@@ -247,53 +247,71 @@ body {
     var(--color-accent),
     transparent
   );
-  box-shadow: 0 0 10px var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent);
   pointer-events: none;
-  animation: borderScan 0.8s ease forwards;
+  animation: borderScan 0.8s ease both;
 }
+/* Travels within the row (top edge -> bottom edge) so the line never crawls
+   out of bounds; opacity fades in/out at the ends. */
 @keyframes borderScan {
   0% {
-    top: -45%;
+    top: 0;
     opacity: 0;
   }
   15% {
     opacity: 1;
   }
-  85% {
+  45% {
     opacity: 1;
   }
   100% {
-    top: 100%;
+    top: 55%;
     opacity: 0;
   }
 }
-/* ...and a band of green "data" bars marches across the row, riding on a soft
-   green wash — a glitchy scan echoing the iframe reveal. */
-.frame-sweep {
+/* ...and a soft green flash washes in from the left edge, then fades. */
+.frame-flash {
   position: absolute;
   inset: 0;
-  background-color: rgba(147, 236, 191, 0.025);
-  background-image: repeating-linear-gradient(
-    90deg,
-    rgba(147, 236, 191, 0.02) 0 6px,
-    transparent 6px 15px
+  border-radius: 0.375rem;
+  background: radial-gradient(
+    120% 100% at 0% 50%,
+    rgba(147, 236, 191, 0.18),
+    transparent 70%
   );
   pointer-events: none;
-  animation: frameSweep 0.7s steps(10, end) forwards;
+  animation: frameFlash 0.55s ease both;
 }
-@keyframes frameSweep {
+@keyframes frameFlash {
   0% {
-    background-position: 0 0;
     opacity: 0;
   }
-  18% {
-    opacity: 1;
-  }
-  82% {
+  25% {
     opacity: 1;
   }
   100% {
-    background-position: 75px 0;
+    opacity: 0;
+  }
+}
+
+/* Background pulse: a flat green fill that just fades in and out via opacity. */
+.frame-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.375rem;
+  background-color: rgba(147, 236, 191, 0.1);
+  pointer-events: none;
+  transition: all 0.2s ease;
+  animation: frameBg 0.8s ease both;
+}
+@keyframes frameBg {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
     opacity: 0;
   }
 }
