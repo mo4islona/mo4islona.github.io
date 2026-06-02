@@ -47,144 +47,115 @@ body {
   text-decoration-color: rgba(182, 245, 212, 0.8);
 }
 
-/* --- Preview entry animations (picked at random per hover) --- */
-/* 1. Pixel mosaic */
-@keyframes pixelReveal {
+/* --- Preview entry animations (picked at random per hover) ---
+   Every effect is built from `opacity` + `transform` only and lives in an
+   overlay layer; the heavy live iframe underneath never has `filter`/
+   `clip-path`/`background-size` animated on it, so it stays GPU-composited and
+   never repaints the whole site mid-reveal. */
+
+/* Incoming preview content — cheap GPU-composited wakes, no filter. */
+@keyframes softFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes imgWake {
   0% {
     opacity: 0;
     transform: scale(1.04);
-    filter: brightness(1.7) contrast(1.5) saturate(1.4);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes holoWake {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes zoomWake {
+  0% {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 1. Pixel mosaic — a dark checkerboard flickers out in blocky steps. */
+@keyframes mosaicFade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* 2. Chromatic glitch — RGB bars jitter sideways and fade. */
+@keyframes glitchBars {
+  0% {
+    opacity: 0.9;
+    transform: translate3d(-9px, 0, 0);
   }
   50% {
-    opacity: 1;
-    filter: brightness(1.2) contrast(1.25) saturate(1.2);
-  }
-  100% {
-    opacity: 1;
-    transform: none;
-    filter: none;
-  }
-}
-@keyframes mosaicClear {
-  0% {
-    opacity: 1;
-    background-size: 160px 160px;
-  }
-  70% {
-    opacity: 0.6;
-    background-size: 56px 56px;
-  }
-  100% {
-    opacity: 0;
-    background-size: 28px 28px;
-  }
-}
-
-/* 2. Chromatic converge — RGB channels fly in from the sides and merge. */
-@keyframes rgbConverge {
-  0% {
-    opacity: 0;
-    transform: scale(1.06);
-    filter: blur(2px) drop-shadow(26px 0 rgba(255, 0, 90, 0.9))
-      drop-shadow(-26px 0 rgba(0, 200, 255, 0.9));
-  }
-  55% {
-    opacity: 1;
-    filter: drop-shadow(8px 0 rgba(255, 0, 90, 0.65))
-      drop-shadow(-8px 0 rgba(0, 200, 255, 0.65));
-  }
-  100% {
-    opacity: 1;
-    transform: none;
-    filter: none;
-  }
-}
-
-/* 3. Datamosh — horizontal bands jump and shear before locking in. */
-@keyframes dataMosh {
-  0% {
-    opacity: 0;
-    clip-path: inset(0 0 92% 0);
-    transform: translateX(-16px) skewX(7deg);
-  }
-  15% {
-    opacity: 1;
-    clip-path: inset(18% 0 58% 0);
-    transform: translateX(14px) skewX(-4deg);
-  }
-  32% {
-    clip-path: inset(58% 0 12% 0);
-    transform: translateX(-12px) skewX(3deg);
-  }
-  50% {
-    clip-path: inset(34% 0 44% 0);
-    transform: translateX(8px);
-  }
-  68% {
-    clip-path: inset(8% 0 72% 0);
-    transform: translateX(-5px) skewX(-2deg);
-  }
-  84% {
-    clip-path: inset(0 0 0 0);
-    transform: translateX(2px);
-  }
-  100% {
-    opacity: 1;
-    clip-path: inset(0);
-    transform: none;
-  }
-}
-/* Overlay: tearing slice bars that flash during the datamosh. */
-@keyframes sliceShift {
-  0% {
-    opacity: 0.8;
-    background-position: 0 0;
-  }
-  50% {
-    opacity: 0.5;
-    background-position: 40px 0;
-  }
-  100% {
-    opacity: 0;
-    background-position: -30px 0;
-  }
-}
-
-/* 4. Hologram — content lifts in with a cyan wash and settles. */
-@keyframes holoRise {
-  0% {
-    opacity: 0;
-    transform: translateY(22px) scale(1.02);
-    filter: brightness(1.5) saturate(0.5) blur(3px)
-      drop-shadow(0 0 12px rgba(0, 229, 255, 0.6));
-  }
-  100% {
-    opacity: 1;
-    transform: none;
-    filter: none;
-  }
-}
-
-/* 5. Zoom warp — a focus pull from blurred and oversized to sharp. */
-@keyframes zoomWarp {
-  0% {
-    opacity: 0;
-    transform: scale(1.45);
-    filter: blur(26px) brightness(1.25);
-  }
-  100% {
-    opacity: 1;
-    transform: none;
-    filter: none;
-  }
-}
-
-@keyframes scanlineFade {
-  0% {
     opacity: 0.55;
+    transform: translate3d(11px, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-4px, 0, 0);
+  }
+}
+
+/* 3. Hologram — cyan scanlines roll once and fade. */
+@keyframes scanFade {
+  0% {
+    opacity: 0.6;
+    transform: translateY(-6px);
   }
   60% {
-    opacity: 0.3;
+    opacity: 0.32;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+/* 4. Light sweep — a soft accent beam passes once across the preview. */
+@keyframes beamSweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-60%);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+}
+
+/* 5. Zoom punch — a quick vignette pulse riding the focus-in. */
+@keyframes vignettePulse {
+  0% {
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
   }
   100% {
     opacity: 0;
@@ -313,6 +284,144 @@ body {
   }
   100% {
     opacity: 0;
+  }
+}
+
+/* Social icons: on hover they shake continuously with a layered RGB-split
+   trail (multiple offset drop-shadows fading out = a smeared glitch wake). */
+.social-icon {
+  display: inline-flex;
+}
+.social-icon:hover svg {
+  animation: iconShake 0.18s steps(2, end) infinite;
+}
+@keyframes iconShake {
+  0% {
+    transform: translate(-1.5px, 0.5px);
+    filter: drop-shadow(2px 0 rgba(255, 0, 60, 0.5))
+      drop-shadow(4px 0 rgba(255, 0, 60, 0.22))
+      drop-shadow(-2px 0 rgba(0, 229, 255, 0.5))
+      drop-shadow(-4px 0 rgba(0, 229, 255, 0.22));
+  }
+  33% {
+    transform: translate(1.5px, -1px);
+    filter: drop-shadow(-2px 0 rgba(255, 0, 60, 0.5))
+      drop-shadow(-4px 0 rgba(255, 0, 60, 0.22))
+      drop-shadow(2px 0 rgba(0, 229, 255, 0.5))
+      drop-shadow(4px 0 rgba(0, 229, 255, 0.22));
+  }
+  66% {
+    transform: translate(-1px, 1px);
+    filter: drop-shadow(3px 0 rgba(255, 0, 60, 0.45))
+      drop-shadow(5px 0 rgba(255, 0, 60, 0.2))
+      drop-shadow(-3px 0 rgba(0, 229, 255, 0.45))
+      drop-shadow(-5px 0 rgba(0, 229, 255, 0.2));
+  }
+  100% {
+    transform: translate(1px, -0.5px);
+    filter: drop-shadow(-3px 0 rgba(255, 0, 60, 0.45))
+      drop-shadow(-5px 0 rgba(255, 0, 60, 0.2))
+      drop-shadow(3px 0 rgba(0, 229, 255, 0.45))
+      drop-shadow(5px 0 rgba(0, 229, 255, 0.2));
+  }
+}
+
+/* Per-letter title wave on row hover. Each letter owns its gradient: a
+   transformed child of a `background-clip: text` element loses the clip and
+   would vanish, so we can't lean on the parent `.link-gradient` here. */
+.title-char {
+  display: inline-block;
+  background-image: linear-gradient(
+    90deg,
+    var(--color-accent-from) 0%,
+    var(--color-accent-to) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* On row hover every letter brightens; a random subset (see TitleChars) also
+   animates with one of three effects — RGB-split glitch, plain shake, or a
+   gentle lift — each with its own duration/delay so they fire out of sync. */
+.group:hover .title-char {
+  background-image: linear-gradient(90deg, #d4f7b8 0%, #8af0d8 100%);
+}
+/* One-shot: each plays exactly once per hover, then the letter rests. The
+   oscillations live inside a single keyframe pass, and every track starts and
+   ends at rest so the letter settles back exactly where it began. */
+.group:hover .title-char.fx-glitch {
+  animation: charGlitch var(--dur, 0.5s) steps(2, end) 1;
+  animation-delay: var(--dly, 0ms);
+}
+.group:hover .title-char.fx-shake {
+  animation: charShake var(--dur, 0.5s) linear 1;
+  animation-delay: var(--dly, 0ms);
+}
+.group:hover .title-char.fx-lift {
+  animation: charLift var(--dur, 0.6s) ease-in-out 1;
+  animation-delay: var(--dly, 0ms);
+}
+@keyframes charGlitch {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    filter: none;
+  }
+  15% {
+    transform: translate(-2px, 0);
+    filter: drop-shadow(1.5px 0 rgba(255, 0, 60, 0.5))
+      drop-shadow(-1.5px 0 rgba(0, 229, 255, 0.5));
+  }
+  35% {
+    transform: translate(2px, -1px);
+    filter: drop-shadow(-1.5px 0 rgba(255, 0, 60, 0.5))
+      drop-shadow(1.5px 0 rgba(0, 229, 255, 0.5));
+  }
+  55% {
+    transform: translate(-1.5px, 1px);
+    filter: drop-shadow(2px 0 rgba(255, 0, 60, 0.4))
+      drop-shadow(-2px 0 rgba(0, 229, 255, 0.4));
+  }
+  75% {
+    transform: translate(1.5px, 0);
+    filter: drop-shadow(-1.5px 0 rgba(255, 0, 60, 0.4))
+      drop-shadow(1.5px 0 rgba(0, 229, 255, 0.4));
+  }
+}
+@keyframes charShake {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  12% {
+    transform: translate(-2px, 1px);
+  }
+  26% {
+    transform: translate(2px, -1px);
+  }
+  40% {
+    transform: translate(-2px, -1px);
+  }
+  54% {
+    transform: translate(1.5px, 1px);
+  }
+  68% {
+    transform: translate(-1.5px, 0.5px);
+  }
+  82% {
+    transform: translate(1px, -0.5px);
+  }
+}
+@keyframes charLift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  70% {
+    transform: translateY(-1px);
   }
 }
 
