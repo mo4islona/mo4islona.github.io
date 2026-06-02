@@ -51,7 +51,7 @@ export function Profile({ reveal }: { reveal: () => CSSProperties }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={label}
-            className="text-white/60 transition-colors hover:text-accent"
+            className="social-icon text-white/60 transition-colors hover:text-accent"
           >
             <Icon className="h-3.5 w-3.5" />
           </a>

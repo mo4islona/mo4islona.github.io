@@ -36,7 +36,7 @@ export const projectGroups: { year: string; projects: Project[] }[] = [
     year: '2015–2019',
     projects: [
       {
-        name: 'JS1K - Tear the curtain',
+        name: 'JS1K: Tear the curtain',
         href: 'https://js1k.com/2015-hypetrain/demo/2241',
         repo: 'https://js1k.com/2015-hypetrain/details/2241',
         description: 'The JavaScript code golfing competition',
