@@ -46,7 +46,7 @@ export function Projects({
                   key={project.name}
                   onMouseEnter={() => onShow(project)}
                   onMouseLeave={onHide}
-                  className="group list-reveal relative flex cursor-pointer items-start gap-3 rounded-md border-l-2 py-2 pr-3 pl-3 transition-colors"
+                  className="group list-reveal relative flex cursor-pointer items-start gap-3 rounded-md border-l-2 py-2 pr-3 pl-3 transition-colors duration-500 ease-out"
                   style={{
                     ...reveal(),
                     borderColor: isActive ? 'var(--color-accent)' : 'transparent',
@@ -84,13 +84,11 @@ export function Projects({
                     </div>
                   </div>
                   {pulse && (
-                    <span
-                      aria-hidden
-                      className="pointer-events-none absolute inset-0 overflow-hidden rounded-md"
-                    >
-                      <span key={`sweep-${frameNonce}`} className="frame-sweep" />
+                    <>
+                      <span key={`bg-${frameNonce}`} className="frame-bg" />
+                      <span key={`flash-${frameNonce}`} className="frame-flash" />
                       <span key={`scan-${frameNonce}`} className="frame-scan" />
-                    </span>
+                    </>
                   )}
                 </li>
               );
