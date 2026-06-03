@@ -10,9 +10,12 @@
     'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-html,
-body {
+html {
   height: 100%;
+}
+
+body {
+  min-height: 100%;
 }
 
 body {
@@ -23,6 +26,8 @@ body {
   background-color: var(--color-bg);
   color: #fff;
   font-family: var(--font-mono);
+  padding: 1.5rem 1rem;
+  box-sizing: border-box;
 }
 
 #root {

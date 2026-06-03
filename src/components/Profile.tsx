@@ -18,7 +18,7 @@ export function Profile({ reveal }: { reveal: () => CSSProperties }) {
       <img
         src={avatar}
         alt="Evgeny Formanenko"
-        className="list-reveal m-5 h-[200px] w-[200px] rounded-full object-cover"
+        className="list-reveal m-3 h-[130px] w-[130px] rounded-full object-cover sm:m-5 sm:h-[200px] sm:w-[200px]"
         style={reveal()}
       />
       <h1

@@ -14,7 +14,7 @@ function App() {
     <>
       <PreviewBackdrop state={state} />
       <main
-        className="relative z-10 flex items-center gap-8 rounded-lg p-5 shadow-2xl"
+        className="relative z-10 flex flex-col items-center gap-6 rounded-lg p-5 shadow-2xl sm:flex-row sm:gap-8"
         style={
           state
             ? {

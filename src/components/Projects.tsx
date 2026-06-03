@@ -104,7 +104,7 @@ function ProjectRow({
           <CodeIcon className="h-5 w-5" />
         )}
       </a>
-      <div className="min-w-[380px]">
+      <div className="w-full sm:min-w-[380px]">
         {/* Stretched link: the ::after covers the whole row so a click anywhere
             (except the icon above) opens the project. */}
         <a
