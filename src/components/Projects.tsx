@@ -1,4 +1,4 @@
-import { type CSSProperties, useState } from 'react';
+import { type CSSProperties, useEffect, useRef, useState } from 'react';
 import { CodeIcon, GithubIcon } from '../icons';
 import { type Project, projectGroups } from '../projects';
 
@@ -74,6 +74,24 @@ function ProjectRow({
   // new letters/effects each time; also used as the TitleChars key to restart
   // the (finite) animations. Starts at 0 for a deterministic first render.
   const [animSeed, setAnimSeed] = useState(0);
+  // True while idle auto-rotation has the highlight on this row: enables the
+  // same per-letter animation as hover (see `.is-active` in index.css). Set in
+  // the same render as the seed reroll so only the freshly mounted letters sit
+  // under `.is-active` — the stale ones never replay.
+  const [idleAnim, setIdleAnim] = useState(false);
+  const wasActive = useRef(false);
+  useEffect(() => {
+    // frameNonce is set only for hover-driven previews, so this branch runs
+    // purely during the on-load auto-rotation phase. Hover keeps its own
+    // mouseEnter reroll + `.group:hover` CSS.
+    if (isActive && !wasActive.current && frameNonce === undefined) {
+      setAnimSeed(Math.random());
+      setIdleAnim(true);
+    } else if (!isActive && wasActive.current) {
+      setIdleAnim(false);
+    }
+    wasActive.current = isActive;
+  }, [isActive, frameNonce]);
   // Fires the scan/flash only when a hover preview animation actually starts on
   // this row (frameNonce set + this row active).
   const pulse = isActive && frameNonce !== undefined;
@@ -84,7 +102,7 @@ function ProjectRow({
         onShow(project);
       }}
       onMouseLeave={onHide}
-      className="group list-reveal relative flex cursor-pointer items-start gap-3 rounded-md border-l-2 py-2 pr-3 pl-3 transition-colors duration-500 ease-out"
+      className={`group list-reveal relative flex cursor-pointer items-start gap-3 rounded-md border-l-2 py-2 pr-3 pl-3 transition-colors duration-500 ease-out${idleAnim ? ' is-active' : ''}`}
       style={{
         ...revealStyle,
         borderColor: isActive ? 'var(--color-accent)' : 'transparent',

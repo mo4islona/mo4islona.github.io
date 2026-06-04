@@ -348,21 +348,25 @@ body {
 /* On row hover every letter brightens; a random subset (see TitleChars) also
    animates with one of three effects — RGB-split glitch, plain shake, or a
    gentle lift — each with its own duration/delay so they fire out of sync. */
-.group:hover .title-char {
+.group:hover .title-char,
+.is-active .title-char {
   background-image: linear-gradient(90deg, #d4f7b8 0%, #8af0d8 100%);
 }
 /* One-shot: each plays exactly once per hover, then the letter rests. The
    oscillations live inside a single keyframe pass, and every track starts and
    ends at rest so the letter settles back exactly where it began. */
-.group:hover .title-char.fx-glitch {
+.group:hover .title-char.fx-glitch,
+.is-active .title-char.fx-glitch {
   animation: charGlitch var(--dur, 0.5s) steps(2, end) 1;
   animation-delay: var(--dly, 0ms);
 }
-.group:hover .title-char.fx-shake {
+.group:hover .title-char.fx-shake,
+.is-active .title-char.fx-shake {
   animation: charShake var(--dur, 0.5s) linear 1;
   animation-delay: var(--dly, 0ms);
 }
-.group:hover .title-char.fx-lift {
+.group:hover .title-char.fx-lift,
+.is-active .title-char.fx-lift {
   animation: charLift var(--dur, 0.6s) ease-in-out 1;
   animation-delay: var(--dly, 0ms);
 }
