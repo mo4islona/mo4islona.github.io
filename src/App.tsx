@@ -3,7 +3,7 @@ import { Projects } from './components/Projects';
 import { PreviewBackdrop, usePreview } from './preview/PreviewBackdrop';
 
 function App() {
-  const { state, show, hide } = usePreview();
+  const { state, show, hide, autoplay, rotateMs } = usePreview();
 
   // Shared on-load reveal sequencer: profile renders first and consumes the
   // earliest delays, the project list continues the same cascade afterwards.
@@ -13,6 +13,16 @@ function App() {
   return (
     <>
       <PreviewBackdrop state={state} />
+      {/* Thin gradient line across the top that fills over one auto-rotation
+          cycle; the nonce key restarts it on every switch. Only while idle. */}
+      {autoplay && state && (
+        <div
+          key={state.nonce}
+          aria-hidden
+          className="frame-progress"
+          style={{ animationDuration: `${rotateMs}ms` }}
+        />
+      )}
       <main
         className="relative z-10 flex flex-col items-center gap-6 rounded-lg p-5 shadow-2xl sm:flex-row sm:gap-8"
         style={

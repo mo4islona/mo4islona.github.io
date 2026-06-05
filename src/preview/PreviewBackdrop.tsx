@@ -144,6 +144,9 @@ export function PreviewBackdrop({ state }: { state: PreviewState | null }) {
 // while idle (gentle fade), and lets hover take over (random glitch).
 export function usePreview() {
   const [state, setState] = React.useState<PreviewState | null>(null);
+  // True until the user's first hover; drives the bottom auto-rotation
+  // progress bar so it only shows while the backdrop is auto-switching.
+  const [autoplay, setAutoplay] = React.useState(true);
   const rotateTimer = React.useRef<ReturnType<typeof setInterval> | undefined>(
     undefined,
   );
@@ -186,6 +189,7 @@ export function usePreview() {
     (project: Project) => {
       // First interaction stops auto-rotation for good.
       clearInterval(rotateTimer.current);
+      setAutoplay(false);
       const idx = allProjects.indexOf(project);
       const targetIdx = idx === -1 ? currentIdxRef.current : idx;
       // Hovering the already-shown project shouldn't replay the animation.
@@ -198,5 +202,5 @@ export function usePreview() {
   // Mouse leaving keeps the last preview on screen (autoplay stays off).
   const hide = React.useCallback(() => {}, []);
 
-  return { state, show, hide };
+  return { state, show, hide, autoplay, rotateMs: ROTATE_MS };
 }

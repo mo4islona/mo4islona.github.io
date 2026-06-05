@@ -208,6 +208,50 @@ body {
   animation: listReveal 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
+/* Auto-rotation progress: a thin gradient line sweeps full-width over one
+   ROTATE_MS cycle, hinting when the backdrop switches to the next project.
+   Brightest mid-screen, fading to transparent at both edges. The reveal rides
+   clip-path (GPU-friendly) so the gradient stays anchored across the viewport
+   while only the visible portion grows. Removed once the user interacts. */
+.frame-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 20;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(182, 240, 154, 0.5) 28%,
+    rgba(95, 227, 196, 0.8) 50%,
+    rgba(147, 236, 191, 0.5) 72%,
+    transparent 100%
+  );
+  box-shadow: 0 0 6px rgba(95, 227, 196, 0.35);
+  clip-path: inset(0 100% 0 0);
+  animation: frameProgress linear both;
+}
+/* Fades in as it starts and back out as it completes, so the switch to the
+   next cycle (which resets the fill to empty) never shows a hard snap. */
+@keyframes frameProgress {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0;
+  }
+}
+
 /* Hover feedback fired when a new iframe preview animation starts: a bright
    beam scans down the green left border... */
 .frame-scan {
