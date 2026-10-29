@@ -22,13 +22,27 @@ export const projectGroups: { year: string; projects: Project[] }[] = [
         repo: 'https://github.com/mo4islona/wick-charts',
         description: (
           <div>
-            High-performance timeseries charts for React, Vue,
+            Realtime, animated charts for React, Vue and Svelte.
             <br />
-            and Svelte
+            Canvas-rendered, zero runtime dependencies
           </div>
         ),
         icon: 'github',
         preview: { kind: 'iframe', src: 'https://wick-charts.eeff.io/' },
+      },
+      {
+        name: 'wikiloop',
+        href: 'https://github.com/mo4islona/wikiloop',
+        repo: 'https://github.com/mo4islona/wikiloop',
+        description: (
+          <div>
+            Turns what AI coding agents learn into reviewed,
+            <br />
+            shared team knowledge. Claude Code and Codex plugin
+          </div>
+        ),
+        icon: 'github',
+        preview: { kind: 'image', src: '/previews/wikiloop.png' },
       },
     ],
   },
